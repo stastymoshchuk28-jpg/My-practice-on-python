@@ -37,13 +37,16 @@ if choiceofcrawl == "vent":
         print("You try to crawl faster, but the vent is too narrow.")
         print("You get stuck and can't move!")
         print("Game Over!")
+    else:
+        print("Invalid choice! Please in next time type 'clean' or 'ignore'.")
+        print("Game Over!")
 elif choiceofcrawl == "door":
     scrambledword = "!dlrow_olleh!"
     print("The digital lock requires a password.")
     print(f"Next to the door, you find a piece of paper with a strange scrambled word: '{scrambledword}'.")
     print("A note on the wall says: 'The password is this word, but reversed and without the first and last exclamation marks (!)'")
     print("You think for a very long time, but you still understand what the password should be and try to enter it.")
-    password = scrambledword[1:-1: -1]
+    password = scrambledword[-2 : 0 : -1]
     userpassword = input("Enter the password: ")
     if userpassword == password:
         print("The door opens! You step out into the sunlight and breathe fresh air.")
@@ -53,3 +56,6 @@ elif choiceofcrawl == "door":
         print("You try to guess again, but you can't figure it out.")
         print("Time runs out and the laboratory's security system activates.")
         print("Game Over!")
+else:
+    print("Invalid choice! Please type 'door' or 'vent'.")
+    print("Game Over!")
