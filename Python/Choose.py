@@ -1,3 +1,5 @@
+#done!
+
 print("Welcome to the physics lab!")
 print("Choose an action:")
 print("1 - Calculate force using Newton's second law (F = m * a)")

@@ -1,3 +1,5 @@
+#done!
+
 import time
 
 print("Welcome to the Password Strength Checker!")

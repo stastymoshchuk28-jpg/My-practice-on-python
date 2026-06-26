@@ -1,3 +1,5 @@
+#done!
+
 print("Welcome to the Cinema Ticket Calculator!")
 print(" ")
 name = input("What is your name? ")

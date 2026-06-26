@@ -1,3 +1,5 @@
+#done!
+
 print("Welcome to the skin buying store!")
 print(" ")
 skins = ["Dragon knife (Karambit)", "Polar gradient knife (Butterfly)", "Sun knife (Karambit)"]

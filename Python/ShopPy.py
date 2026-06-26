@@ -1,3 +1,5 @@
+#done!
+
 user_balance = 500 #Variables
 spent = 0
 apple_cost = 2

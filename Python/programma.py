@@ -1,3 +1,5 @@
+#done!
+
 print("=== Secret Message Encoder ===")
 while True:
     print("User, choose action please:")

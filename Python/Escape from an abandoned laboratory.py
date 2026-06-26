@@ -1,3 +1,5 @@
+#done!
+
 print("Welcome to text minigame: Escape from an Abandoned Laboratory!")
 print("-----------------------------------------------")
 Name = input("What is your name? ").capitalize()

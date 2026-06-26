@@ -1,3 +1,5 @@
+#done!
+
 g = 9.81  # speed of the free fall (m/s^2)
 rho = 1000  # water thickness (kg/m^3)
 
