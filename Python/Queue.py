@@ -1,3 +1,5 @@
+#Done! On ukrainian language!
+
 ticket_number = 0
 
 def get_next_ticket():
