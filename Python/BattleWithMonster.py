@@ -1,3 +1,4 @@
+#done!
 import time
 
 monster_HP = 80
