@@ -1,4 +1,4 @@
-#Not done!
+#Done
 import time
 
 def analyze_text(text):
