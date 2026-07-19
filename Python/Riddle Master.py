@@ -54,58 +54,66 @@ def riddle(riddle, riddles, riddle_num, total_number_of_riddle, points):
     print(" ")
     sleep(0.5)
     while True:
-        user_answer = input("⌨️  Type your answer, or type 'hint' for a clue, or 'skip' to move on: ").strip()
-        print(" ") 
-        sleep(0.5)
         if attemtps > 0:
-            if user_answer.lower() == correct_answer:
-                print("🎉 Correct! Well done!")
-                print(" ")
-                sleep(0.5)
-                riddle_num += 1
-                if hint_used == True:
-                    print("✅ Correct with a hint! +5 points!")
+            user_answer = input("⌨️  Type your answer, or type 'hint' for a clue, or 'skip' to move on: ").strip()
+            print(" ") 
+            sleep(0.5)
+            if attemtps > 0:
+                if user_answer.lower() == correct_answer:
+                    print("🎉 Correct! Well done!")
                     print(" ")
                     sleep(0.5)
-                    claiming_points = 5
-                    points += claiming_points
-                    return riddle_num, points
-                elif hint_used == False:
-                    if attemtps < 3 and attemtps > 1:
-                        print("✅ Correct on second try! +5 points!")
+                    riddle_num += 1
+                    if hint_used == True:
+                        print("✅ Correct with a hint! +5 points!")
                         print(" ")
                         sleep(0.5)
                         claiming_points = 5
                         points += claiming_points
-                    elif attemtps == 3:
-                        print("✅ Correct on first try! +10 points!")
-                        print(" ")
-                        sleep(0.5)
-                        claiming_points = 10
-                        points += claiming_points
-                    else:
-                        print("✅ Correct on last attempt! +2 points!")
-                        print(" ")
-                        sleep(0.5)
-                        claiming_points = 2
-                        points += claiming_points
+                        return riddle_num, points
+                    elif hint_used == False:
+                        if attemtps < 3 and attemtps > 1:
+                            print("✅ Correct on second try! +5 points!")
+                            print(" ")
+                            sleep(0.5)
+                            claiming_points = 5
+                            points += claiming_points
+                        elif attemtps == 3:
+                            print("✅ Correct on first try! +10 points!")
+                            print(" ")
+                            sleep(0.5)
+                            claiming_points = 10
+                            points += claiming_points
+                        else:
+                            print("✅ Correct on last attempt! +2 points!")
+                            print(" ")
+                            sleep(0.5)
+                            claiming_points = 2
+                            points += claiming_points
+                        return riddle_num, points
+                elif user_answer.lower() == "hint":
+                    print(f"💡 Here's a hint for you: '{hint}'")
+                    hint_used = True
+                    print(" ")
+                    sleep(0.5)
+                    continue
+                elif user_answer.lower() == "skip":
+                    print(f"⏭️  Skipped! The correct answer was: '{correct_answer}'!")
+                    print(" ")
+                    sleep(0.5)
+                    riddle_num += 1
                     return riddle_num, points
-            elif user_answer.lower() == "hint":
-                print(f"💡 Here's a hint for you: '{hint}'")
+                else:
+                    print("❌ Not quite, try again!")
+                    print(" ")
+                    sleep(0.5)
+                    attemtps -= 1
+            elif attemtps <= 0:
+                print(f"😅 No more attempts left! The correct answer was: '{correct_answer}'!")
                 print(" ")
                 sleep(0.5)
-                continue
-            elif user_answer.lower() == "skip":
-                print(f"⏭️  Skipped! The correct answer was: '{correct_answer}'!")
-                print(" ")
-                sleep(0.5)
-                riddle_num += 1
+                points += claiming_points
                 return riddle_num, points
-            else:
-                print("❌ Not quite, try again!")
-                print(" ")
-                sleep(0.5)
-                attemtps -= 1
         elif attemtps <= 0:
             print(f"😅 No more attempts left! The correct answer was: '{correct_answer}'!")
             print(" ")
