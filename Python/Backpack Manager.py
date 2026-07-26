@@ -180,9 +180,15 @@ while True:
             oformity1()
             print("👋 Thank you for using Backpack Manager! Goodbye!")
             break
+        else:
+            print("❗ Not right number of choice!")
+            oformity1()
+            continue
     elif user_choice.strip() == "":
         print("❗ Choice can't be empty")
+        oformity1()
         continue
     else:
         print("❗ Choice need to be number!")
+        oformity1()
         continue
