@@ -58,17 +58,86 @@ def explore(inventory):
             return random_item
 
     random_item = find_random_item()
-    print(f"✨ You explored the world and found {random_item}!")
-    oformity1()
-    print(f"➕ Item ({random_item}) add to inventory!")
-    oformity1()
-    inventory.append(random_item)
-    return inventory
+    if not random_item in inventory:
+        print(f"✨ You explored the world and found {random_item}!")
+        oformity1()
+        print(f"➕ Item ({random_item}) add to inventory!")
+        oformity1()
+        inventory.append(random_item)
+        return inventory
+    elif random_item in inventory:
+        print(f"✨ You explored the world and found {random_item}!")
+        oformity1()
+        print(f"❗ Item ({random_item}) can't be add to inventory, you have it!")
+        oformity1()
+        return inventory
+    else:
+        print(f"❗ Error!")
+        oformity1()
+        return inventory
 
 def use_item(inventory, player_hp, player_gold):
+    global oformity1, oformity2
+
+    def find_using_item(item_to_use):
+        if item_to_use == "Apple":
+            using_item = item_to_use.lower().strip()
+            print(using_item)
+            buff = 10
+            return using_item, buff
+        elif item_to_use == "Potion":
+            using_item = item_to_use.lower().strip()
+            print(using_item)
+            buff = 20
+            return using_item, buff
+        elif item_to_use == "Iron Sword":
+            using_item = item_to_use.lower().strip()
+            print(using_item)
+            buff = "Go_Fight"
+            return using_item, buff
+        elif item_to_use == "Shield":
+            using_item = item_to_use.lower().strip()
+            print(using_item)
+            buff = 25
+            return using_item, buff
+        elif item_to_use == "Diamond":
+            using_item = item_to_use.lower().strip()
+            print(using_item)
+            buff = 100
+            return using_item, buff
+        elif item_to_use == "Bread":
+            using_item = item_to_use.lower().strip()
+            print(using_item)
+            buff = 15
+            return using_item, buff
+        elif item_to_use == "Wood":
+            using_item = item_to_use.lower().strip()
+            print(using_item)
+            buff = 50
+            return using_item, buff
+        elif item_to_use == "Gold Coin":
+            using_item = item_to_use.lower().strip()
+            print(using_item)
+            buff = 75
+            return using_item, buff
+        else:
+            print("❗ Error!")
+            using_item = "Error!"
+            buff = None
+            return using_item, buff
+
+    def go_to_fight(player_hp, player_gold):
+        print("Pre-Beta version! Can't fight!")
+        print("Reward 10 gold!")
+        print("But -25 hp!")
+        player_hp -= 25
+        player_gold += 10
+        return player_hp, player_gold
+    
     if not inventory:
         print("❗ Inventory is empty, no items to use!")
         oformity1()
+        return inventory, player_hp, player_gold
     else:
         while True:
             print("🎒 Your inventory: ", end="")
@@ -89,6 +158,39 @@ def use_item(inventory, player_hp, player_gold):
                     continue
             if item_to_use == False:
                 print("❗ Not right name of item!")
+                oformity1()
+            else:
+                using_item, buff = find_using_item(item_to_use)
+                if using_item == user_use and buff != None:
+                    if using_item == "diamond" or using_item == "wood" or using_item == "gold coin":
+                        player_gold += buff
+                        print(f"💰 Item used! +{buff} gold!")
+                        oformity1()
+                    elif using_item != "diamond" and using_item != "wood" and using_item != "gold coin" and using_item != "iron sword":
+                        player_hp += buff
+                        print(f"❤️  Item used! +{buff} HP!")
+                        oformity1()
+                    elif using_item == "iron sword":
+                        print("⚔️  Item used! Going to fight!")
+                        oformity1()
+                        player_hp, player_gold = go_to_fight(player_hp, player_gold)
+                        oformity1()
+                    else:
+                        print("❗ Error of buff!")
+                        oformity1()
+                    inventory.remove(item_to_use)
+                    print("🎒 Item deleted from inventory!")
+                    oformity1()
+                    return inventory, player_hp, player_gold
+                else:
+                    print("❗ Item or buff is none!")
+                    oformity1()
+                    continue
+                
+def show_stats(inventory, player_hp, player_gold):
+    global oformity1, oformity2
+    print("📊 Your stats:")
+
 
 
 print("👋 Welcome to the RPG!")
@@ -116,7 +218,7 @@ while True:
         elif user_choice == 2:
             inventory = explore(inventory)
         elif user_choice == 3:
-            ...
+            inventory, player_hp, player_gold = use_item(inventory, player_hp, player_gold)
         elif user_choice == 4:
             ...
         elif user_choice == 5:
