@@ -181,7 +181,43 @@ def delete_contact(contacts):
             continue
 
 def find_contact(contacts):
-    ...
+    def find_contact_by_name(contacts, name_to_find):
+        contact_not_in_contacts = True
+        for contact in contacts:
+            contact_name = contact[0]
+            if name_to_find == contact_name:
+                contact_not_in_contacts = False
+                return contact, contact_not_in_contacts
+            else:
+                contact_not_in_contacts = True
+                continue
+        return contact, contact_not_in_contacts
+
+    while True:
+        name_of_contact = input("⌨️  Enter name of contact to find it: ").strip()
+        oformity1()
+        if name_of_contact != "":
+            contact, contact_not_in_contacts = find_contact_by_name(contacts, name_of_contact)
+            if not contact:
+                print("❗ Contact not found!")
+                oformity1()
+                continue
+            if contact_not_in_contacts:
+                print("❗ Contact not found!")
+                oformity1()
+                continue
+            else:
+                print("📱 Contact:")
+                oformity1()
+                print(f"👨 Name: {contact[0]}")
+                oformity2()
+                print(f"📱 Number: {contact[1]}")
+                oformity1()
+                break
+        else:
+            print("❗ Name of contact can't be empty!")
+            oformity1()
+            continue
 
 def sort_contact(contacts):
     ...
@@ -218,7 +254,7 @@ while True:
         elif user_choice == 3:
             contacts = delete_contact(contacts)
         elif user_choice == 4:
-            ...
+            find_contact(contacts)
         elif user_choice == 5:
             ...
         elif user_choice == 6:
