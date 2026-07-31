@@ -1,3 +1,6 @@
+#Done!
+#v1.0
+
 from time import sleep
 
 contacts = []
@@ -19,7 +22,7 @@ def show_contacts(contacts):
         for contact in contacts:
             contact_name = contact[0]
             contact_number = contact[1]
-            text = text + f"Name: {contact_name} \n Number: {contact_number};\n"
+            text = text + f"Name: {contact_name}\n Number: {contact_number};\n"
         text = text[0: -2: 1]
         print(text)
         oformity1()
@@ -220,7 +223,49 @@ def find_contact(contacts):
             continue
 
 def sort_contact(contacts):
-    ...
+    if not contacts:
+        print("❗ Contacts empty, can't sort!")
+        oformity1()
+    else:
+        while True:
+            print("=== Sort contacts ===")
+            oformity1()
+            print("1️⃣  1. Sort by name")
+            print("2️⃣  2. Sort by number")
+            oformity1()
+            user_choice = input("⌨️  Enter your choice: ").strip()
+            if user_choice.isdigit():
+                user_choice = int(user_choice)
+                if user_choice == 1:
+                    contacts.sort(key = lambda contact: contact[0])
+                    text = ""
+                    for contact in contacts:
+                        text = text + f"Name: {contact[0]}\nNumber: {contact[1]};\n"
+                    text = text[0: -2: 1]
+                    print(f"📱 Sorted Contacts:\n {text}")
+                    oformity1()
+                    return contacts
+                elif user_choice == 2:
+                    contacts.sort(key = lambda contact: contact[1])
+                    text = ""
+                    for contact in contacts:
+                        text = text + f"Name: {contact[0]}\nNumber: {contact[1]};\n"
+                    text = text[0: -2: 1]
+                    print(f"📱 Sorted Contacts:\n {text}")
+                    oformity1()
+                    return contacts
+                else:
+                    print("❗ Not right number of choice!")
+                    oformity1()
+                    continue
+            elif user_choice == "":
+                print("❗ Choice can't be empty!")
+                oformity1()
+                continue
+            else:
+                print("❗ Choice need to be number!")
+                oformity1()
+                continue
 
 def exit_proggram(contacts):
     show_contacts(contacts)
@@ -256,7 +301,7 @@ while True:
         elif user_choice == 4:
             find_contact(contacts)
         elif user_choice == 5:
-            ...
+            contacts = sort_contact(contacts)
         elif user_choice == 6:
             exit_proggram(contacts)
         else:
