@@ -37,7 +37,7 @@ def show_inventory(inventory):
         oformity2()
         text = ""
         for item in inventory:
-            text = text + f"{item};\n"
+            text = text + f"{inventory.index(item)+1}. {item};\n"
         text = text[0: -2: 1]
         print(text)
         oformity1()
@@ -56,20 +56,17 @@ def pick_up_item(inventory, picked_items):
             continue
         else:
             if item_name in inventory:
-                print("❗ Item alredy in inventory!")
+                print("❗ Item already in inventory!")
                 oformity1()
                 continue
             else:
                 if not item_name in picked_items:
-                    slot = None
-                    item = [item_name, slot]
-                    picked_items.append(item)
-                    oformity1()
+                    picked_items.append(item_name)
                     print("📦 You pick up item. Now you can add it to inventory!")
                     oformity1()
                     return picked_items
                 else:
-                    print("❗ Item alredy picked!")
+                    print("❗ Item already picked!")
                     oformity1()
                     continue
 
@@ -78,38 +75,108 @@ def put_item_in_slot(inventory, picked_items):
         if not picked_items:
             print("❗ You don't pick up any items!")
             oformity1()
-            return inventory
+            return inventory, picked_items
         print("📦 Picked items: ", end="")
         text = ""
         for item in picked_items:
-            text = text + f"{item[0]}; "
+            text = text + f"{item}; "
+        text = text[0: -2: 1]
         print(text)
         oformity1()
         item_name = input("⌨️  Enter item name: ").strip()
         oformity1()
-        if item_name in inventory:
-            print("❗ Item in inventory!")
+        in_inventory = False
+        for item in inventory:
+            check_name_ii = item.lower()
+            item_name_to_check = item_name.lower()
+            if item_name_to_check == check_name_ii:
+                in_inventory = True
+                break
+            else:
+                in_inventory = False
+                continue
+        in_p_i = False
+        for item in picked_items:
+            check_name_ip_i = item.lower()
+            item_name_to_check = item_name.lower()
+            if item_name_to_check == check_name_ip_i:
+                in_p_i = True
+                break
+            else:
+                in_p_i = False
+                continue
+        if in_p_i:
+            if in_inventory:
+                print("❗ Item in inventory!")
+                oformity1()
+                continue
+            item_slot = input("⌨️  Enter item slot (number): ").strip()
+            if item_slot.isdigit():
+                item_slot = int(item_slot)
+                if item_slot <= 0 or item_slot < 1:
+                    print("❗ Not right slot number")
+                    oformity1()
+                    continue
+                else:
+                    if (item_slot - 1) > len(inventory):
+                        print(f"❗ Invalid slot! Choose a slot from 1 to {len(inventory) + 1}.")
+                        oformity1()
+                        continue
+                    else:
+                        slot = item_slot - 1
+                        inventory.insert(slot, item_name)
+                        picked_items.remove(item_name)
+                        print(f"➕ Item {item_name} added to slot {item_slot}!")
+                        oformity1()
+                        return inventory, picked_items
+            elif item_slot == "":
+                print("❗ Item slot can't be empty!")
+                oformity1()
+                continue
+            else:
+                print("❗ Item slot need to be a number!")
+                oformity1()
+                continue
+        else:
+            print("❗ Item not picked!")
             oformity1()
             continue
-        item_slot = input("⌨️  Enter item slot (number): ").strip()
-        if item_slot <= 0:
-            print("❗ Not right slot number")
+
+def drop_item(inventory, picked_items):
+    while True:
+        print("=== Drop item ===")
+        oformity1()
+        print("1️⃣  1. drop from inventory")
+        oformity2()
+        print("2️⃣  2. drop from picked items")
+        oformity1()
+        user_choice_to_drop = input("⌨️  Enter your choice: ").strip()
+        oformity1()
+        if user_choice_to_drop.isdigit():
+            user_choice_to_drop = int(user_choice_to_drop)
+            if user_choice_to_drop == 1:
+                ...
+            elif user_choice_to_drop == 2:
+                ...
+        elif user_choice_to_drop == "":
+            print("❗ Choice can't be empty!")
             oformity1()
             continue
         else:
-            ...
-
+            print("❗ Choice need to be number!")
+            oformity1()
+            continue
 
 while True:
     player_choice = menu()
     if player_choice.isdigit():
         player_choice = int(player_choice)
         if player_choice == 1:
-            ...
+            show_inventory(inventory)
         elif player_choice == 2:
-            ...
+            picked_items = pick_up_item(inventory, picked_items)
         elif player_choice == 3:
-            ...
+            inventory, picked_items = put_item_in_slot(inventory, picked_items)
         elif player_choice == 4:
             ...
         elif player_choice == 5:
