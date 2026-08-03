@@ -111,6 +111,7 @@ def put_item_in_slot(inventory, picked_items):
                 oformity1()
                 continue
             item_slot = input("⌨️  Enter item slot (number): ").strip()
+            oformity1()
             if item_slot.isdigit():
                 item_slot = int(item_slot)
                 if item_slot <= 0 or item_slot < 1:
@@ -142,22 +143,57 @@ def put_item_in_slot(inventory, picked_items):
             oformity1()
             continue
 
-def drop_item(inventory, picked_items):
+def drop_item(inventory):
     while True:
+        if not inventory:
+            print("❗ Inventory is empty! Can't delete any item!")
+            oformity1()
+            return inventory
+        text = ""
+        indexses = []
         print("=== Drop item ===")
         oformity1()
-        print("1️⃣  1. drop from inventory")
-        oformity2()
-        print("2️⃣  2. drop from picked items")
+        for item in inventory:
+            item_index = inventory.index(item) + 1
+            indexses.append(item_index)
+            text = text + f"{item_index}. {item};\n"
+        text = text[0: -2: 1]
+        print(text)
         oformity1()
         user_choice_to_drop = input("⌨️  Enter your choice: ").strip()
         oformity1()
         if user_choice_to_drop.isdigit():
             user_choice_to_drop = int(user_choice_to_drop)
-            if user_choice_to_drop == 1:
-                ...
-            elif user_choice_to_drop == 2:
-                ...
+            delete_index = user_choice_to_drop - 1
+            if delete_index < 0:
+                print("❗ No item in this slot!")
+                oformity1()
+                continue
+            elif delete_index > len(inventory):
+                print("❗ No item in this slot!")
+                oformity1()
+                continue
+            if delete_index in indexses:
+                for item in inventory:
+                    if inventory.index(item) == delete_index:
+                        item_to_delete = item
+                        right_index = True
+                        break
+                    else:
+                        item_to_delete = "No item"
+                        right_index = False
+                        continue
+                if item_to_delete != "No item" and right_index:
+                    inventory.pop(delete_index)
+                    if item_to_delete in inventory:
+                        inventory.remove(item_to_delete)
+                    print(f"🗑️  Item {item_to_delete} deleted!")
+                    oformity1()
+                    return inventory
+            else:
+                print("❗ Not right number of choice!")
+                oformity1()
+                continue
         elif user_choice_to_drop == "":
             print("❗ Choice can't be empty!")
             oformity1()
@@ -178,7 +214,7 @@ while True:
         elif player_choice == 3:
             inventory, picked_items = put_item_in_slot(inventory, picked_items)
         elif player_choice == 4:
-            ...
+            inventory = drop_item(inventory)
         elif player_choice == 5:
             ...
         elif player_choice == 6:
