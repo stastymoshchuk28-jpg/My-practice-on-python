@@ -1,3 +1,6 @@
+#Done
+#v1.0
+
 from time import sleep
 inventory = []
 picked_items = []
@@ -150,12 +153,10 @@ def drop_item(inventory):
             oformity1()
             return inventory
         text = ""
-        indexses = []
         print("=== Drop item ===")
         oformity1()
         for item in inventory:
             item_index = inventory.index(item) + 1
-            indexses.append(item_index)
             text = text + f"{item_index}. {item};\n"
         text = text[0: -2: 1]
         print(text)
@@ -169,31 +170,16 @@ def drop_item(inventory):
                 print("❗ No item in this slot!")
                 oformity1()
                 continue
-            elif delete_index > len(inventory):
+            elif delete_index >= len(inventory):
                 print("❗ No item in this slot!")
                 oformity1()
                 continue
-            if delete_index in indexses:
-                for item in inventory:
-                    if inventory.index(item) == delete_index:
-                        item_to_delete = item
-                        right_index = True
-                        break
-                    else:
-                        item_to_delete = "No item"
-                        right_index = False
-                        continue
-                if item_to_delete != "No item" and right_index:
-                    inventory.pop(delete_index)
-                    if item_to_delete in inventory:
-                        inventory.remove(item_to_delete)
-                    print(f"🗑️  Item {item_to_delete} deleted!")
-                    oformity1()
-                    return inventory
             else:
-                print("❗ Not right number of choice!")
+                item_to_delete = inventory[delete_index]
+                inventory.pop(delete_index)
+                print(f"🗑️  Item {item_to_delete} deleted!")
                 oformity1()
-                continue
+                return inventory
         elif user_choice_to_drop == "":
             print("❗ Choice can't be empty!")
             oformity1()
@@ -202,6 +188,50 @@ def drop_item(inventory):
             print("❗ Choice need to be number!")
             oformity1()
             continue
+
+def sort_inventory(inventory):
+    while True:
+        if not inventory:
+            print("❗ Inventory is empty! Can't sort it!")
+            oformity1()
+            return inventory
+        print("=== Sort inventory ===")
+        oformity1()
+        print("1️⃣  1. Sort by A-Z")
+        print("2️⃣  2. Sort by Z-A")
+        oformity1()
+        user_choice_to_sort = input("⌨️  Enter your choice: ").strip()
+        oformity1()
+        if user_choice_to_sort.isdigit():
+            user_choice_to_sort = int(user_choice_to_sort)
+            if user_choice_to_sort == 1:
+                inventory.sort(key=str.lower)
+                print("✨ Inventory sorted!")
+                oformity1()
+                return inventory
+            elif user_choice_to_sort == 2:
+                inventory.sort(key=str.lower, reverse=True)
+                print("✨ Inventory sorted!")
+                oformity1()
+                return inventory
+            else:
+                print("❗ Not right number of choice!")
+                oformity1()
+                continue
+        elif user_choice_to_sort == "":
+            print("❗ Choice can't be empty!")
+            oformity1()
+            continue
+        else:
+            print("❗ Choice need to be number!")
+            oformity1()
+            continue
+
+def exit_program(inventory):
+    show_inventory(inventory)
+    print("👋 Goodbye!")
+    oformity1()
+    exit()
 
 while True:
     player_choice = menu()
@@ -216,9 +246,9 @@ while True:
         elif player_choice == 4:
             inventory = drop_item(inventory)
         elif player_choice == 5:
-            ...
+            inventory = sort_inventory(inventory)
         elif player_choice == 6:
-            ...
+            exit_program(inventory)
         else:
             print("❗ Not right number of choice!")
             oformity1()
