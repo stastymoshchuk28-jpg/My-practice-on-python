@@ -36,16 +36,31 @@ def menu():
         oformity1()
         return menu_choice, continue_menu
 
+def show_tasks(tasks):
+    text = ""
+    print("📋 Your tasks:")
+    oformity1()
+    for num, task in enumerate(tasks, 1):
+        text = text + f"{num}. {task};\n"
+    text = text[0: -2: 1]
+    print(text)
+    oformity1()
+
+def complete_task(tasks):
+    ...
+
 while True:
     menu_choice, continue_menu = menu()
     if continue_menu:
         continue
     else:
         if menu_choice == 1:
-            ...
+            show_tasks(tasks)
         elif menu_choice == 2:
             ...
         elif menu_choice == 3:
             ...
         else:
-            print("")
+            print("❗ Not right number of choice!")
+            oformity1()
+            continue
