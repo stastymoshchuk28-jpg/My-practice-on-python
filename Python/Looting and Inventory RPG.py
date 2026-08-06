@@ -1,5 +1,5 @@
-#Not done!
-#v0.9
+#done!
+#v1.0
 from time import sleep
 from random import randint
 
@@ -29,8 +29,9 @@ def menu():
     print("6️⃣  6. Reverse inventory")
     oformity2()
     print("7️⃣  7. Change the inventory to a copy of it.")
-    oformity1()
+    oformity2()
     print("8️⃣  8. Exit")
+    oformity1()
 
 def show_inventory(inventory):
     if not inventory:
@@ -155,11 +156,11 @@ def count_items(inventory):
                 oformity1()
             elif user_choice == "Shield" and shield_f:
                 shields = inventory.count("Shield")
-                print(f"🛡️ Shields in inventory: {shields}")
+                print(f"🛡️  Shields in inventory: {shields}")
                 oformity1()
             elif user_choice == "Sword" and sword_f:
                 swords = inventory.count("Sword")
-                print(f"⚔️ Swords in inventory: {swords}")
+                print(f"⚔️  Swords in inventory: {swords}")
                 oformity1()
             elif user_choice == "Bow" and bow_f:
                 bows = inventory.count("Bow")
@@ -167,7 +168,7 @@ def count_items(inventory):
                 oformity1()
             elif user_choice == "Magic staff" and magic_staff_f:
                 magic_staffs = inventory.count("Magic staff")
-                print(f"🪄 Magic staffs in inventory: {magic_staffs}")
+                print(f"🪄  Magic staffs in inventory: {magic_staffs}")
                 oformity1()
             elif user_choice == "Apple" and apple_f:
                 apples = inventory.count("Apple")
@@ -218,7 +219,79 @@ def copy_inventory(inventory, copy_of_inventory):
             return copy_of_inventory
         
 def clear_inventory(inventory):
-    ...
+    while True:
+        if not inventory:
+            print("❗ Inventory is empty! Nothing to clear!")
+            oformity1()
+            return inventory
+        else:
+            print("🗑️  Clearing inventory...")
+            oformity1()
+            user_choice = input("❓ Are you sure to clear inventory? (yes/no) ").strip().lower()
+            oformity1()
+            if user_choice == "yes":
+                print("🗑️  Inventory cleared!")
+                inventory.clear()
+                oformity1()
+                return inventory
+            elif user_choice == "no":
+                print("❌ Inventory clearing cancelled!")
+                oformity1()
+                return inventory
+            else:
+                print("❗ Not right choice!")
+                oformity1()
+                continue
+
+def reverse_inventory(inventory):
+    while True:
+        if not inventory:
+            print("❗ Inventory is empty! Nothing to reverse!")
+            oformity1()
+            return inventory   
+        else:
+            print("🔄️ Reverse inventory...")  
+            oformity1()
+            user_choice = input("❓ Are you sure to reverse inventory? (yes/no) ").strip().lower()
+            oformity1()
+            if user_choice == "yes":
+                print("🔄️ Inventory reversed!")
+                inventory.reverse()
+                oformity1()
+                return inventory
+            elif user_choice == "no":
+                print("❌ Inventory reversed cancelled!")
+                oformity1()
+                return inventory
+            else:
+                print("❗ Not right choice!")
+                oformity1()
+                continue
+
+def change_inventory_to_copy(inventory, copy_of_inventory):
+    while True:
+        if not copy_of_inventory:
+            print("❗ The inventory copy is empty!")
+            oformity1()
+            return inventory
+        else:
+            print("🎒◀️ 💾 Changing the inventory to a copy of it...")
+            oformity1()
+            user_choice = input("❓ Are you sure to change inventory to a copy of it? (yes/no) ").strip().lower()
+            oformity1()
+            if user_choice == "yes":
+                print("🎒◀️ 💾 Inventory changed to copy!")
+                inventory = copy_of_inventory.copy()
+                oformity1()
+                return inventory
+            elif user_choice == "no":
+                print("❌ Inventory changing to copy cancelled!")
+                oformity1()
+                return inventory
+            else:
+                print("❗ Not right choice!")
+                oformity1()
+                continue
 
 while True:
     menu()
@@ -237,11 +310,13 @@ while True:
         elif player_choice == 5:
             inventory = clear_inventory(inventory)
         elif player_choice == 6:
-            ...
+            inventory = reverse_inventory(inventory)
         elif player_choice == 7:
-            ...
+            inventory = change_inventory_to_copy(inventory, copy_of_inventory)
         elif player_choice == 8:
-            ...
+            show_inventory(inventory)
+            print("👋 Goodbye!")
+            break
         else:
             print("❗ Not right number of choice!")
             oformity1()
