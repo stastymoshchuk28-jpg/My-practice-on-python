@@ -1,3 +1,5 @@
+#done!
+#v1.0
 from time import sleep
 
 player = {
@@ -105,6 +107,28 @@ def buy_item(shop, player):
                 oformity1()
                 continue
 
+def show_inventory(player):
+    player_inventory = player["Inventory"]
+    if not player_inventory:
+        print("❗ Your inventory empty!")
+        oformity1()
+    else:
+        text = ""
+        for item in player_inventory:
+            item_name = item["Item name"]
+            items = item["Items"]
+
+            text = text + f"• {item_name}: {items}\n"
+        text = text[0: -1: 1]
+        print("🎒 Your inventory: ")
+        oformity1()
+        print(text)
+        oformity1()
+
+def show_money(player):
+    print(f"💰 Your money: {player['Money']}")
+    oformity1()
+
 while True:
     menu()
     user_choice = input("⌨️  Enter your choice: ").strip()
@@ -115,11 +139,14 @@ while True:
         elif user_choice == 2:
             shop, player = buy_item(shop, player)
         elif user_choice == 3:
-            ...
+            show_inventory(player)
         elif user_choice == 4:
-            ...
+            show_money(player)
         elif user_choice == 5:
-            ...
+            show_inventory(player)
+            show_money(player)
+            print("👋 Goodbye!")
+            break
         else:
             print("❗ Not right number of choice!")
             oformity1()
