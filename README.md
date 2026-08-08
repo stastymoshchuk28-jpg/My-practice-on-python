@@ -1,7 +1,6 @@
-👋Hello!
+👋 Hi!
+👨 I'm Stanislav!
+📍 I'm from Ukraine!
 
-💻I`m Stanislav!
-
-📍Here in that's repository you can see my works in VS Code Studio!
-
-✨I'm rookie so please don't hate me. I learning python.
+📚 In this repo, you can see how I'm learning Python! All my practice work is here!
+📕 I'm a beginner learning the basics, so please don't hate on me.
