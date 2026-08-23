@@ -67,25 +67,14 @@ def add_book(books:dict):
             continue
 
         if in_books:
-            print("📕 This book already exists - added more copies instead.")
+            print(f"📕 This book already exists - added more copies instead (You write to add: {book_copies}).")
             added_copy = False
-            for k, v in books.items():
-                for valye in v.values():
-                    if valye == book_author:
-                        books[k]["copies"] += 1
-                        added_copy = True
-                        break
-                    elif valye == book_genre:
-                        books[k]["copies"] += 1
-                        added_copy = True
-                        break
-                    else:
-                        continue
-                if k == book_title:
-                    books[k]["copies"] += 1
-                    added_copy = True
+            for k in books.keys():
                 if added_copy:
                     break
+                if k == book_title:
+                    books[k]["copies"] += book_copies
+                    added_copy = True
             return books
         else:
             book_to_add = {"author": book_author, "genre": book_genre, "copies": book_copies}
