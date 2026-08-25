@@ -1,6 +1,6 @@
 from time import sleep
 #Not done
-#v0.1
+#v0.9
 
 books = {}
 picked_books = {}
@@ -147,10 +147,10 @@ def return_book(books:dict, picked_books:dict):
                 break
             else:
                 book_info["copies"] -= 1
-                print(f"📕 Return successfully! Copies left: {book_info["copies"]}")
+                print(f"📕 Return successfully! Copies left (of check out books): {book_info["copies"]}")
                 picked_books[book_to_return]["copies"] -= 1
                 if picked_books[book_to_return]["copies"] <= 0:
-                    found_book = picked_books.pop(book_to_return, False)
+                    _ = picked_books.pop(book_to_return, False)
                 oformity1()
                 break
     return books, picked_books    
@@ -168,33 +168,60 @@ def show_all_books(books:dict):
             cop = info["copies"]
             print(f"📕 Title: {name}")
             print(f"👨 Author: {aut}")
-            print(f"⚙️ Genre: {gen}")
+            print(f"⚙️  Genre: {gen}")
             print(f"📚 Copies: {cop}")
             oformity2()
+        oformity1()
 
 def show_unique_genres(books:dict):
     if not books:
         print("❗ Your library is empty!")
         oformity1()
     else:
+        print("=== 🏷️ Unique Genres in the Library ===")
         unique_genres = set()
         for info_of_book in books.values():
             gen = info_of_book["genre"]
             unique_genres.add(gen)
-        print(f"⚙️✨ Unique genres: {unique_genres}")
+        text = ""
+        for g in unique_genres:
+            text = text + f"{g}; "
+        print(f"⚙️✨ Total unique genres: {text}")
         oformity1()
 
-def search_for_book(books):
+def search_for_book(books:dict):
     if not books:
         print("❗ Your library is empty!")
         oformity1()
     else:
-        book_to_search = input("⌨️  Enter name of book to search it: ").strip()
+        book_to_search = input("⌨️  Enter a title to search: ").strip()
         oformity1()
+        if book_to_search in books:
+            print(f"🔍 {book_to_search} found!")
+            oformity1()
+            info_of_book = books[book_to_search]
+            print("🪪  Info about book:")
+            oformity1()
+            print(f"📕 Title: {book_to_search}")
+            oformity2()
+            print(f"👨 Author: {info_of_book["author"]}")
+            oformity2()
+            print(f"⚙️  Genre: {info_of_book["genre"]}")
+            oformity2()
+            print(f"📚 Copies: {info_of_book["copies"]}")
+            oformity1()
+        else:
+            print(f"❌ {book_to_search} not found!")
+            oformity1()
+
+def exit(books:dict):
+    print("📚 Thank you for using Library Inventory Manager!")
+    oformity1()
+    show_all_books(books)
+    print("👋 Goodbye!")
 
 while True:
     start = menu(start)
-    print(books)
     try:
         user_choice = int(input("⌨️  Enter your choice: "))
         oformity1()
@@ -223,9 +250,10 @@ while True:
     elif user_choice == 5:
         show_unique_genres(books)
     elif user_choice == 6:
-        ...
+        search_for_book(books)
     elif user_choice == 7:
-        ...
+        exit(books)
+        break
     else:
         print("❗ Not right choice!")
         continue
