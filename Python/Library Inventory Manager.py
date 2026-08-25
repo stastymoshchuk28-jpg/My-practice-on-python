@@ -3,6 +3,7 @@ from time import sleep
 #v0.1
 
 books = {}
+picked_books = {}
 start = True
 
 def oformity1():
@@ -81,6 +82,116 @@ def add_book(books:dict):
             books[book_title] = book_to_add
             return books
 
+def check_out_book(books:dict, picked_books:dict):
+    if not books:
+        print("❗ Your library is empty! Can't check out from empty library!")
+        oformity1()
+        return books, picked_books
+    while True:
+        book_to_out = input("⌨️  Enter the title of the book to check out: ").strip()
+        oformity1()
+
+        check_book = books.get(book_to_out, False)
+        if not check_book:
+            print("❗ Sorry, this book is not in the library!")
+            oformity1()
+            continue
+        else:
+            book_info = books[book_to_out]
+            if book_info["copies"] <= 0:
+                print("❗ Sorry, all copies are currently checked out!")
+                oformity1()
+                break
+            else:
+                book_info["copies"] -= 1
+                print(f"📕 Checked out successfully! Copies left: {book_info["copies"]}")
+                if book_to_out in picked_books:
+                    picked_books[book_to_out]["copies"] += 1
+                else:
+                    book_info_for_out = book_info.copy()
+                    book_info_for_out["copies"] = 1
+                    picked_books[book_to_out] = book_info_for_out
+                oformity1()
+                break
+    return books, picked_books
+
+def return_book(books:dict, picked_books:dict):
+    if not books:
+        print("❗ Your library is empty!")
+        oformity1()
+        return books, picked_books
+    if not picked_books:
+        print("❗ You don't check out any book to return!")
+        oformity1()
+        return books, picked_books
+    while True:
+        book_to_return = input("⌨️  Enter the title of the book to return: ").strip()
+        oformity1()
+
+        check_book1 = picked_books.get(book_to_return, False)
+        check_book2 = books.get(book_to_return, False)
+        if not check_book1:
+            print("❗ This book wasn't checked out!")
+            oformity1()
+            continue
+        else:
+            if not check_book2:
+                print("This book doesn't belong to our library.")
+            if book_to_return in picked_books:
+                book_info = picked_books[book_to_return]
+            else:
+                print("❗ This book doesn't checked out!")
+            if book_info["copies"] <= 0:
+                print("❗ Sorry, all copies are currently return!")
+                oformity1()
+                break
+            else:
+                book_info["copies"] -= 1
+                print(f"📕 Return successfully! Copies left: {book_info["copies"]}")
+                picked_books[book_to_return]["copies"] -= 1
+                if picked_books[book_to_return]["copies"] <= 0:
+                    found_book = picked_books.pop(book_to_return, False)
+                oformity1()
+                break
+    return books, picked_books    
+
+def show_all_books(books:dict):
+    if not books:
+        print("❗ Your library is empty!")
+        oformity1()
+    else:
+        print("=== 📖 All Books ===")
+        oformity1()
+        for name, info in books.items():
+            aut = info["author"]
+            gen = info["genre"]
+            cop = info["copies"]
+            print(f"📕 Title: {name}")
+            print(f"👨 Author: {aut}")
+            print(f"⚙️ Genre: {gen}")
+            print(f"📚 Copies: {cop}")
+            oformity2()
+
+def show_unique_genres(books:dict):
+    if not books:
+        print("❗ Your library is empty!")
+        oformity1()
+    else:
+        unique_genres = set()
+        for info_of_book in books.values():
+            gen = info_of_book["genre"]
+            unique_genres.add(gen)
+        print(f"⚙️✨ Unique genres: {unique_genres}")
+        oformity1()
+
+def search_for_book(books):
+    if not books:
+        print("❗ Your library is empty!")
+        oformity1()
+    else:
+        book_to_search = input("⌨️  Enter name of book to search it: ").strip()
+        oformity1()
+
 while True:
     start = menu(start)
     print(books)
@@ -102,16 +213,19 @@ while True:
         continue
 
     if user_choice == 1:
-        add_book(books)
+        books = add_book(books)
     elif user_choice == 2:
-        ...
+        books, picked_books = check_out_book(books, picked_books)
     elif user_choice == 3:
-        ...
+        return_book(books, picked_books)
     elif user_choice == 4:
-        ...
+        show_all_books(books)
     elif user_choice == 5:
-        ...
+        show_unique_genres(books)
     elif user_choice == 6:
         ...
     elif user_choice == 7:
         ...
+    else:
+        print("❗ Not right choice!")
+        continue
