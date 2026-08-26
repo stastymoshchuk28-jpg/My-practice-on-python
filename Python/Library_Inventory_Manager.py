@@ -69,17 +69,17 @@ def add_book(books:dict):
 
         if in_books:
             print(f"📕 This book already exists - added more copies instead (You write to add: {book_copies}).")
-            added_copy = False
             for k in books.keys():
-                if added_copy:
-                    break
-                if k == book_title.lower():
+                if k.lower() == book_title.lower():
                     books[k]["copies"] += book_copies
-                    added_copy = True
+                    break
+            pause_long()
             return books
         else:
             book_to_add = {"author": book_author, "genre": book_genre, "copies": book_copies}
             books[book_title] = book_to_add
+            print(f"✅ Book {book_title} add to library!")
+            pause_long()
             return books
 
 def check_out_book(books:dict, picked_books:dict):
@@ -136,6 +136,7 @@ def return_book(books:dict, picked_books:dict):
 
         check_book1 = False
         check_book2 = False
+    
         for k in books.keys():
             if k.lower() == book_to_return.lower():
                 book_to_return = k
@@ -148,12 +149,12 @@ def return_book(books:dict, picked_books:dict):
         
         
         if not check_book1:
-            print("❗ This book wasn't checked out!")
+            print("❗ This book doesn't belong to our library.")
             pause_long()
             continue
         else:
             if not check_book2:
-                print("❗ This book doesn't belong to our library.")
+                print("❗ This book wasn't checked out!")
                 pause_long()
                 continue
             else:
@@ -164,10 +165,11 @@ def return_book(books:dict, picked_books:dict):
                     break
                 else:
                     book_info["copies"] -= 1
-                    print(f"📕 Return successfully! Copies left (of check out books): {book_info["copies"]}")
-                    picked_books[book_to_return]["copies"] -= 1
+                    print(f"📕 Return successfully! Copies left (of check out books): {book_info['copies']}")
+                    pause_long()
                     books[book_to_return]["copies"] += 1
                     if picked_books[book_to_return]["copies"] <= 0:
+                        print("🗑️ Copies lower than 0! Book deleted from picked books!")
                         picked_books.pop(book_to_return, False)
                     pause_long()
                     break
