@@ -1,6 +1,20 @@
-👋 Hi!
-👨 I'm Stanislav!
-📍 I'm from Ukraine!
+# 🐍 Python Practice
 
-📚 In this repo, you can see how I'm learning Python! All my practice work is here!
-📕 I'm a beginner learning the basics, so please don't hate on me.
+👋 Hi there!  
+I'm **Stanislav** from Ukraine 🇺🇦  
+
+## 📚 About this repo
+This repository is my personal Python learning journey.  
+Here you’ll find:
+- 🧩 Practice scripts and exercises
+- 🚀 Small experiments
+- 📕 Notes and progress logs
+
+## 🎯 Goals
+- Learn and master Python basics
+- Get comfortable with Git and VS Code
+- Build fun projects and share progress
+
+## 💡 Contributions
+Got tips or ideas? Feel free to open an issue or submit a pull request.  
+I’m always happy to learn from the community!
