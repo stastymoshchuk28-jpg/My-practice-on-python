@@ -22,13 +22,14 @@ Here you'll find:
 - Modules used across projects: `random`, `time`
 
 ## 🗂️ Some projects inside
-- **Battle Arena Simulator** — a turn-based text combat game
-- **Secret Message Encoder** — Caesar cipher encoder/decoder
-- **Grocery Store Simulator** — a console cash register
-- **Random Team Generator** — splits a list of names into teams
-- **Magical Adventures** — a text-based RPG with classes, skills, and leveling
-- **Riddle Master** — a riddle game with hints and scoring
-- **Library Inventory Manager** — a library system using dictionaries and sets
+- **Magic Adventures (RPG GAME).py** — text-based RPG with classes, skills, and leveling
+- **Grocery Store Simulator.py** — a console cash register
+- **Library_Inventory_Manager.py** — a library system using dictionaries and sets
+- **secret_message_encoder.py** — Caesar cipher encoder/decoder
+- **random_team_generator.py** — splits a list of names into teams
+- **riddle_master.py** — a riddle game with hints and scoring
+
+**...and more! 🐍**
 
 ## 🎯 Goals
 - Learn and master Python basics
