@@ -1,21 +1,16 @@
-# Віртуальне середовище
+#Venv
 VsCode/venv/
 venv/
 
-# Кеші та байткод
+#Cache
 __pycache__/
 *.pyc
 *.pyo
 
-# PyInstaller артефакти
-dist/
-build/
-*.spec
-
-# IDE та редактори
+#Need for IDE
 .vscode/
 *.code-workspace
 
-# Системні файли
+#System files (Just save it!)
 .DS_Store
 Thumbs.db
