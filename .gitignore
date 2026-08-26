@@ -1,0 +1,21 @@
+# Віртуальне середовище
+VsCode/venv/
+venv/
+
+# Кеші та байткод
+__pycache__/
+*.pyc
+*.pyo
+
+# PyInstaller артефакти
+dist/
+build/
+*.spec
+
+# IDE та редактори
+.vscode/
+*.code-workspace
+
+# Системні файли
+.DS_Store
+Thumbs.db
