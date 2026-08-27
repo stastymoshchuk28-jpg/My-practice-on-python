@@ -1,4 +1,5 @@
-#done!
+#Done
+#v1.0
 
 game = "Magic world of Python"
 

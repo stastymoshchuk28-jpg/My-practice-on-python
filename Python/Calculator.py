@@ -1,3 +1,6 @@
+#Done
+#v1.0
+
 from time import sleep
 
 operator_list = ["+", "-", "*", "/", "%", "**"]

@@ -1,4 +1,6 @@
 #Done
+#v1.0
+
 from time import sleep
 
 riddles = ["I have keys but no locks. I have space but no room. You can enter, but you can't go outside. What am I?", "The more you take, the more you leave behind. What am I?", "What has hands but cannot clap?", "What gets wetter the more it dries?", "I am not alive, but I can grow. I don't have lungs, but I need air. What am I?", "What can travel around the world while staying in one corner?", "What has a neck but no head?", "What comes once in a minute, twice in a moment, but never in a thousand years?"]

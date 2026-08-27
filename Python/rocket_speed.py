@@ -1,4 +1,5 @@
-#done!
+#Done
+#v1.0
 
 Height = float(input("Enter the height of the rocket in kilometers: "))
 

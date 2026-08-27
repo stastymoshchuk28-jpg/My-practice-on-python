@@ -1,3 +1,5 @@
+#Done
+#v1.0
 import time
 
 breads, apples, milks, eggss, waters = 0, 0, 0, 0, 0

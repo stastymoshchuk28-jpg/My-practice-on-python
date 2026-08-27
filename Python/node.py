@@ -1,3 +1,6 @@
+#Done (for practice)
+#v1.0
+
 class node():
     def __init__(self, data, next):
         self.data = data

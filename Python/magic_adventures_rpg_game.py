@@ -1,5 +1,8 @@
 #Done
+#v1.0
+
 #On ukrainian language
+
 from time import sleep, time
 
 from random import randint, choice

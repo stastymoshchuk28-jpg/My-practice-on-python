@@ -1,4 +1,5 @@
-#done!
+#Done
+#v1.0
 
 print("Welcome to text minigame: Escape from an Abandoned Laboratory!")
 print("-----------------------------------------------")

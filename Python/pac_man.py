@@ -1,4 +1,5 @@
-#done!
+#Done
+#v1.0
 
 pointstowin = int(input("Enter the number of points needed to win: "))
 

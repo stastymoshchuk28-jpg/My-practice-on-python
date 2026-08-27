@@ -1,4 +1,5 @@
-#done!
+#Done
+#v1.0
 
 import time
 

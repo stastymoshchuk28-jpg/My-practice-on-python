@@ -1,4 +1,5 @@
-#done!
+#Done
+#v1.0
 
 user_balance = 500 #Variables
 spent = 0

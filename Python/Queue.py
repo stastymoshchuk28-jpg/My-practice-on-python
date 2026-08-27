@@ -1,4 +1,7 @@
-#Done! On ukrainian language!
+#Done
+#v1.0
+
+# On ukrainian language!
 
 ticket_number = 0
 
