@@ -1,4 +1,5 @@
 #done!
+#v1.0
 
 print("Welcome to the skin buying store!")
 print(" ")

@@ -5,11 +5,11 @@ from time import sleep
 
 tasks = []
 
-def oformity1():
+def pause_long():
     print(" ")
     sleep(0.5)
 
-def oformity2():
+def pause_short():
     sleep(0.1)
 
 def show_tasks_for_functions(tasks):
@@ -27,16 +27,16 @@ def show_tasks_for_functions(tasks):
         task_num += 1
     text = text[0: -2: 1]
     print(text)
-    oformity1()
+    pause_long()
 
 def show_tasks(tasks):
     if not tasks:
         print("❗ No tasks!")
-        oformity1()
+        pause_long()
     else:
         task_number = 1
         print("📋 Your tasks:")
-        oformity1()
+        pause_long()
         for task in tasks:
             mark_complete = task[1]
             if mark_complete:
@@ -45,9 +45,9 @@ def show_tasks(tasks):
                 completed = "❌"
             print(f"{task_number}. {completed} {task[0]} \n")
             task_number += 1
-            oformity2()
+            pause_short()
         print("✅ - completed task, ❌ - not completed task!")
-        oformity1()
+        pause_long()
         
 def add_task(tasks):
     while True:
@@ -63,24 +63,24 @@ def add_task(tasks):
             elif new_task != task_for_check_in_tasks:
                 task_in_list = False
                 continue
-        oformity1()
+        pause_long()
         if task_in_list:
             print("📋 Task in list alredy!")
-            oformity1()
+            pause_long()
             continue
         else:
             if new_task == "":
                 print("❗ Task can't be empty!")
-                oformity1()
+                pause_long()
                 continue
             elif new_task.isdigit():
                 print("❗ Task can't be only numbers!")
-                oformity1()
+                pause_long()
                 continue
             else:
                 task_to_add = [new_task, mark_complete]
                 print("✅ Task added!")
-                oformity1()
+                pause_long()
                 tasks.append(task_to_add)
                 print(tasks)
                 return tasks
@@ -89,77 +89,77 @@ def delete_task(tasks):
     while True:
         if not tasks:
             print("❗ No tasks to delete!")
-            oformity1()
+            pause_long()
             return tasks
         else:
             show_tasks_for_functions(tasks)
             task_for_delete = input("⌨️  Enter task number to delete it: ").strip()
             if task_for_delete == "":
                 print("❗ Task can't be empty!")
-                oformity1()
+                pause_long()
                 continue
             elif task_for_delete.isdigit():
                 task_for_delete = int(task_for_delete)
                 if task_for_delete > len(tasks):
                     print("❗ Not right number of task!")
-                    oformity1()
+                    pause_long()
                     continue
                 delete_index = task_for_delete - 1
                 if delete_index < 0:
                     print("❗ Not right number of task!")
-                    oformity1()
+                    pause_long()
                     continue
                 else:
                     task_l = tasks[delete_index]
                     task = task_l[0]
                     tasks.pop(delete_index)
                     print(f"🗑️ Task '{task}' deleted!")
-                    oformity1()
+                    pause_long()
                     return tasks
             else:
                 print("❗ Task number need to be a digit!")
-                oformity1()
+                pause_long()
                 continue
 
 def complete_task(tasks):
     while True:
         if not tasks:
             print("❗ No tasks to mark as completed!")
-            oformity1()
+            pause_long()
             return tasks
         else:
             show_tasks_for_functions(tasks)
             task_to_mark_completed = input("⌨️  Enter task number to mark it as completed: ").strip()
             if task_to_mark_completed == "":
                 print("❗ Task can't be empty!")
-                oformity1()
+                pause_long()
                 continue
             elif task_to_mark_completed.isdigit():
                 task_to_mark_completed = int(task_to_mark_completed)
                 if task_to_mark_completed > len(tasks):
                     print("❗ Not right number of task!")
-                    oformity1()
+                    pause_long()
                     continue
                 complete_index = task_to_mark_completed - 1
                 if complete_index < 0:
                     print("❗ Not right number of task!")
-                    oformity1()
+                    pause_long()
                     continue
                 else:
                     task_l = tasks[complete_index]
                     finding_task_c = tasks[complete_index][1]
                     if finding_task_c:
                         print("❗ Task alredy marked as completed!")
-                        oformity1()
+                        pause_long()
                         continue
                     else:
                         tasks[complete_index][1] = True
                         print(f"✅ Task: {task_l[0]} has been marked as completed!")
-                        oformity1()
+                        pause_long()
                         return tasks
             else:
                 print("❗ Task number need to be a digit!")
-                oformity1()
+                pause_long()
                 continue
 
 def exit_proggram(tasks):
@@ -170,19 +170,19 @@ def exit_proggram(tasks):
 
 while True:
     print("=== TO-DO LIST ===")
-    oformity1()
+    pause_long()
     print("1️⃣  1. Show tasks")
-    oformity2()
+    pause_short()
     print("2️⃣  2. Add task")
-    oformity2()
+    pause_short()
     print("3️⃣  3. Delete task")
-    oformity2()
+    pause_short()
     print("4️⃣  4. Complete task")
-    oformity2()
+    pause_short()
     print("5️⃣  5. Exit")
-    oformity1()
+    pause_long()
     choice = input("⌨️  Enter your choice: ").lower().strip()
-    oformity1()
+    pause_long()
     if choice.isdigit():
         choice = int(choice)
         if choice == 1:
@@ -197,9 +197,9 @@ while True:
             exit_proggram(tasks)
     elif choice == "":
         print("❗ Choice can't be empty!")
-        oformity1()
+        pause_long()
         continue
     else:
         print("❗ Choice need to be number!")
-        oformity1()
+        pause_long()
         continue

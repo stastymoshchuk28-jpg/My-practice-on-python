@@ -6,54 +6,54 @@ from random import randint
 inventory = []
 copy_of_inventory = []
 
-def oformity1():
+def pause_long():
     print(" ")
     sleep(0.5)
 
-def oformity2():
+def pause_short():
     sleep(0.1)
 
 def menu():
     print("=== Looting and inventory RPG ===")
-    oformity1()
+    pause_long()
     print("1️⃣  1. Show inventory")
-    oformity2()
+    pause_short()
     print("2️⃣  2. Find chest")
-    oformity2()
+    pause_short()
     print("3️⃣  3. Count items")
-    oformity2()
+    pause_short()
     print("4️⃣  4. Copy inventory")
-    oformity2()
+    pause_short()
     print("5️⃣  5. Clear inventory")
-    oformity2()
+    pause_short()
     print("6️⃣  6. Reverse inventory")
-    oformity2()
+    pause_short()
     print("7️⃣  7. Change the inventory to a copy of it.")
-    oformity2()
+    pause_short()
     print("8️⃣  8. Exit")
-    oformity1()
+    pause_long()
 
 def show_inventory(inventory):
     if not inventory:
         print("❗ Your inventory is empty!")
-        oformity1()
+        pause_long()
     else:
         text = ""
         for task in inventory:
             text = text + f"• {task};\n"
         text = text[0: -2: 1]
         print("🎒 Inventory:")
-        oformity2()
+        pause_short()
         print(text)
-        oformity1()
+        pause_long()
 
 def found_chest(inventory):
     print("🏃 You go underground to search for a chest!")
-    oformity1()
+    pause_long()
     found = randint(0, 1)
     if found == 0:
         print("✨ You found a chest!")
-        oformity1()
+        pause_long()
         loot_variant = randint(0, 3)
         if loot_variant == 0:
             loot = ["Potion", "Shield"]
@@ -68,20 +68,20 @@ def found_chest(inventory):
             text = text + item + ", "
         text = text[0: -2: 1]
         print(f"🌟 You opened the chest and found: {text}")
-        oformity1()
+        pause_long()
         print("➕ Loot added to inventory!")
         inventory.extend(loot)
-        oformity1()
+        pause_long()
         return inventory
     elif found == 1:
         print("❌ And... You don't find a chest...")
-        oformity1()
+        pause_long()
         return inventory
 
 def count_items(inventory):
     if not inventory:
         print("❗ Inventory is empty!")
-        oformity1()
+        pause_long()
     else:
         potion_f = False
         shield_f = False
@@ -96,7 +96,7 @@ def count_items(inventory):
         text_found_items = ""
         
         print("🔎 Let's count item!")
-        oformity1()
+        pause_long()
         for item in inventory:
             if item == "Potion":
                 if potion_f != True:
@@ -141,162 +141,162 @@ def count_items(inventory):
 
         text_found_items = text_found_items[0: -2: 1]
         print(f"🎒 Your found item:\n{text_found_items}")
-        oformity1()
+        pause_long()
         user_choice = input("⌨️  Enter name of the item: ").strip()
-        oformity1()
+        pause_long()
         if user_choice.isdigit():
             print("❗ Name can't be numbers!")
         elif user_choice == "":
             print("❗ Name can't be empty!")
-            oformity1()
+            pause_long()
         else:
             if user_choice == "Potion" and potion_f:
                 potions = inventory.count("Potion")
                 print(f"🧪 Potions in inventory: {potions}")
-                oformity1()
+                pause_long()
             elif user_choice == "Shield" and shield_f:
                 shields = inventory.count("Shield")
                 print(f"🛡️  Shields in inventory: {shields}")
-                oformity1()
+                pause_long()
             elif user_choice == "Sword" and sword_f:
                 swords = inventory.count("Sword")
                 print(f"⚔️  Swords in inventory: {swords}")
-                oformity1()
+                pause_long()
             elif user_choice == "Bow" and bow_f:
                 bows = inventory.count("Bow")
                 print(f"🏹 Bows in inventory: {bows}")
-                oformity1()
+                pause_long()
             elif user_choice == "Magic staff" and magic_staff_f:
                 magic_staffs = inventory.count("Magic staff")
                 print(f"🪄  Magic staffs in inventory: {magic_staffs}")
-                oformity1()
+                pause_long()
             elif user_choice == "Apple" and apple_f:
                 apples = inventory.count("Apple")
                 print(f"🍎 Apples in inventory: {apples}")
-                oformity1()
+                pause_long()
             elif user_choice == "Devil fruit" and devil_fruit_f:
                 devil_fruits = inventory.count("Devil fruit")
                 print(f"🍈 Devil fruits in inventory: {devil_fruits}")
-                oformity1()
+                pause_long()
             elif user_choice == "Magic book" and magic_book_f:
                 magic_books = inventory.count("Magic book")
                 print(f"📖 Magic books in inventory: {magic_books}")
-                oformity1()
+                pause_long()
             else:
                 print("❗ Not right name of the item!")
-                oformity1()
+                pause_long()
 
 def copy_inventory(inventory, copy_of_inventory):
     while True:
         if not inventory:
             print("❗ Inventory is empty! Nothing to copy!")
-            oformity1()
+            pause_long()
             return copy_of_inventory
         print("💾 Creating inventory copy...")
-        oformity1()
+        pause_long()
         if copy_of_inventory:
             print("❗ You already have copy of inventory!")
-            oformity1()
+            pause_long()
             sure = input("❓ Are you sure to make new copy of inventory? (yes/no) ").strip().lower()
-            oformity1()
+            pause_long()
             if sure == "yes":
                 print("💾 Copy of inventory created!")
                 copy_of_inventory = inventory.copy()
-                oformity1()
+                pause_long()
                 return copy_of_inventory
             elif sure == "no":
                 print("❗ Copy creation cancelled!")
-                oformity1()
+                pause_long()
                 return copy_of_inventory
             else:
                 print("❗ Not right word!")
-                oformity1()
+                pause_long()
                 continue
         else:
             print("💾 Copy of inventory created!")
             copy_of_inventory = inventory.copy()
-            oformity1()
+            pause_long()
             return copy_of_inventory
         
 def clear_inventory(inventory):
     while True:
         if not inventory:
             print("❗ Inventory is empty! Nothing to clear!")
-            oformity1()
+            pause_long()
             return inventory
         else:
             print("🗑️  Clearing inventory...")
-            oformity1()
+            pause_long()
             user_choice = input("❓ Are you sure to clear inventory? (yes/no) ").strip().lower()
-            oformity1()
+            pause_long()
             if user_choice == "yes":
                 print("🗑️  Inventory cleared!")
                 inventory.clear()
-                oformity1()
+                pause_long()
                 return inventory
             elif user_choice == "no":
                 print("❌ Inventory clearing cancelled!")
-                oformity1()
+                pause_long()
                 return inventory
             else:
                 print("❗ Not right choice!")
-                oformity1()
+                pause_long()
                 continue
 
 def reverse_inventory(inventory):
     while True:
         if not inventory:
             print("❗ Inventory is empty! Nothing to reverse!")
-            oformity1()
+            pause_long()
             return inventory   
         else:
             print("🔄️ Reverse inventory...")  
-            oformity1()
+            pause_long()
             user_choice = input("❓ Are you sure to reverse inventory? (yes/no) ").strip().lower()
-            oformity1()
+            pause_long()
             if user_choice == "yes":
                 print("🔄️ Inventory reversed!")
                 inventory.reverse()
-                oformity1()
+                pause_long()
                 return inventory
             elif user_choice == "no":
                 print("❌ Inventory reversed cancelled!")
-                oformity1()
+                pause_long()
                 return inventory
             else:
                 print("❗ Not right choice!")
-                oformity1()
+                pause_long()
                 continue
 
 def change_inventory_to_copy(inventory, copy_of_inventory):
     while True:
         if not copy_of_inventory:
             print("❗ The inventory copy is empty!")
-            oformity1()
+            pause_long()
             return inventory
         else:
             print("🎒◀️ 💾 Changing the inventory to a copy of it...")
-            oformity1()
+            pause_long()
             user_choice = input("❓ Are you sure to change inventory to a copy of it? (yes/no) ").strip().lower()
-            oformity1()
+            pause_long()
             if user_choice == "yes":
                 print("🎒◀️ 💾 Inventory changed to copy!")
                 inventory = copy_of_inventory.copy()
-                oformity1()
+                pause_long()
                 return inventory
             elif user_choice == "no":
                 print("❌ Inventory changing to copy cancelled!")
-                oformity1()
+                pause_long()
                 return inventory
             else:
                 print("❗ Not right choice!")
-                oformity1()
+                pause_long()
                 continue
 
 while True:
     menu()
     player_choice = input("⌨️  Enter your choice: ").strip()
-    oformity1()
+    pause_long()
     if player_choice.isdigit():
         player_choice = int(player_choice)
         if player_choice == 1:
@@ -319,13 +319,13 @@ while True:
             break
         else:
             print("❗ Not right number of choice!")
-            oformity1()
+            pause_long()
             continue
     elif player_choice == "":
         print("❗ Choice can't be empty!")
-        oformity1()
+        pause_long()
         continue
     else:
         print("❗ Choice need to be a number!")
-        oformity1()
+        pause_long()
         continue

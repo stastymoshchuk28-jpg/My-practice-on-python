@@ -1,4 +1,5 @@
 #done!
+#v1.0
 
 print("=== Secret Message Encoder ===")
 while True:

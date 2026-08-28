@@ -1,26 +1,30 @@
 #It's enumerate pracite!
+
+#done!
+#v1.0
+
 from time import sleep
 
 tasks = ["Go to grocery shop", "Pass the exam with a score of 100", "Learn python"]
 
-def oformity1():
+def pause_long():
     print(" ")
     sleep(0.5)
 
-def oformity2():
+def pause_short():
     sleep(0.1)
 
 def menu():
     print("=== Tasks ===")
-    oformity1()
+    pause_long()
     print("1️⃣  1. Show tasks")
-    oformity2()
+    pause_short()
     print("2️⃣  2. Complete task")
-    oformity2()
+    pause_short()
     print("3️⃣  3. Exit")
-    oformity1()
+    pause_long()
     menu_choice = input("⌨️  Enter your choice: ").strip()
-    oformity1()
+    pause_long()
     if menu_choice.isdigit():
         continue_menu = False
         menu_choice = int(menu_choice)
@@ -28,36 +32,36 @@ def menu():
     elif menu_choice == "":
         continue_menu = True
         print("❗ Choice can't be empty!")
-        oformity1()
+        pause_long()
         return menu_choice, continue_menu
     else:
         continue_menu = True
         print("❗ Choice need to be number!")
-        oformity1()
+        pause_long()
         return menu_choice, continue_menu
 
 def show_tasks(tasks):
     if not tasks:
         print("❗ Your tasks is empty!")
-        oformity1()
+        pause_long()
     else:
         text = ""
         print("📋 Your tasks:")
-        oformity1()
+        pause_long()
         for num, task in enumerate(tasks, 1):
             text = text + f"{num}. {task};\n"
         text = text[0: -2: 1]
         print(text)
-        oformity1()
+        pause_long()
 
 def complete_task(tasks):
     while True:
         if not tasks:
             print("❗ Your tasks is empty!")
-            oformity1()
+            pause_long()
             return tasks  
         print("=== Complete task ===")
-        oformity1()
+        pause_long()
         show_tasks(tasks)
         task_to_complete = input("⌨️  Enter task number to complete it:").strip()
         if task_to_complete.isdigit():
@@ -65,31 +69,31 @@ def complete_task(tasks):
             task_to_complete_index = task_to_complete - 1
             if task_to_complete_index < 0:
                 print("❗Not right number of task!")
-                oformity1()
+                pause_long()
                 continue
             elif task_to_complete_index >= len(tasks):
                 print("❗Not right number of task!")
-                oformity1()
+                pause_long()
                 continue
             else:
                 task_name = tasks[task_to_complete_index]
                 tasks.pop(task_to_complete_index)
                 print(f"✅🗑️ Task '{task_name}' completed and deleted!")
-                oformity1()
+                pause_long()
                 return tasks
         elif task_to_complete == "":
             print("❗ Task number can't be empty!")
-            oformity1()
+            pause_long()
             continue
         else:
             print("❗ You need to enter number of task!")
-            oformity1()
+            pause_long()
             continue
 
 def exit_program(tasks):
     show_tasks(tasks)
     print("👋 Goodbye!")
-    oformity1()
+    pause_long()
 
 while True:
     menu_choice, continue_menu = menu()
@@ -105,5 +109,5 @@ while True:
             break
         else:
             print("❗ Not right number of choice!")
-            oformity1()
+            pause_long()
             continue

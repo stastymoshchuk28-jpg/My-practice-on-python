@@ -5,22 +5,22 @@ from time import sleep
 
 operator_list = ["+", "-", "*", "/", "%", "**"]
 
-def oformity1():
+def pause_long():
     print(" ")
     sleep(0.5)
 
-def oformity2():
+def pause_short():
     sleep(0.1)
     
 def find_first_number():
     try:
         first_number = float(input("⌨️  Enter first number: "))
-        oformity1()
+        pause_long()
         return False, first_number
     except ValueError:
-        oformity1()
+        pause_long()
         print("❗ You need to enter number. Like 12 or 15.9!")
-        oformity1()
+        pause_long()
         return True, 0
     
 def operator():
@@ -40,7 +40,7 @@ def operator():
         else:
             return "Nil"
     operator = input("⌨️  Enter operator: ").strip()
-    oformity1()
+    pause_long()
     if operator in operator_list:
         action = check_operator(operator)
         if action == "Nil":
@@ -54,56 +54,56 @@ def operator():
 def find_second_number():
     try:
         second_number = float(input("⌨️  Enter second number: "))
-        oformity1()
+        pause_long()
         return False, second_number
     except ValueError:
-        oformity1()
+        pause_long()
         print("❗ You need to enter number. Like 12 or 15.9!")
-        oformity1()
+        pause_long()
         return True, 0
 
 def action(a, f, s):
     def add(f, s):
         result = f + s
         print(f"✅ Result: {result}")
-        oformity1()
+        pause_long()
 
     def sub(f, s):
         result = f - s
         print(f"✅ Result: {result}")
-        oformity1()
+        pause_long()
 
     def mul(f, s):
         result = f * s
         print(f"✅ Result: {result}")
-        oformity1()
+        pause_long()
 
     def div(f, s):
         try:
             result = f / s
             print(f"✅ Result: {result}")
-            oformity1()
+            pause_long()
         except ZeroDivisionError:
             print("❗ Can't do division by zero!")
-            oformity1()
+            pause_long()
 
     def exp(f, s):
         try:
             result = f ** s
             print(f"✅ Result: {result}")
-            oformity1()
+            pause_long()
         except OverflowError:
             print("❗ Can't do this calculation! It's too big! More than infinity!")
-            oformity1()
+            pause_long()
 
     def mod(f, s):
         try:
             result = f % s
             print(f"✅ Result: {result}")
-            oformity1()
+            pause_long()
         except ZeroDivisionError:
             print("❗ Can't do division by zero!")
-            oformity1()            
+            pause_long()            
 
     if a == "add":
         add(f, s)
@@ -119,11 +119,11 @@ def action(a, f, s):
         exp(f, s)
     else:
         print("❗ Error!")
-        oformity1()
+        pause_long()
 
 while True:
     print("=== Calculator ===")
-    oformity1()
+    pause_long()
     to_continue, first_number = find_first_number()
     if to_continue:
         continue
@@ -135,18 +135,18 @@ while True:
         continue
     action(found_action, first_number, second_number)
     want_to_continue = input("⌨️  Enter do you want to continue calculations? (yes/no) ").strip()
-    oformity1()
+    pause_long()
     if want_to_continue == "yes":
         print("✨ Continue calculator!")
-        oformity1()
+        pause_long()
         continue
     elif want_to_continue == "no":
         print("👋 Goodbye!")
-        oformity1()
+        pause_long()
         break
     else:
         print("❗ You need to enter yes or no!")
-        oformity1()
+        pause_long()
         print("❗ Continue calculator!")
-        oformity1()
+        pause_long()
         continue

@@ -1,4 +1,5 @@
 #done!
+#v1.0
 
 from time import sleep, time
 from random import randint
@@ -8,11 +9,11 @@ player_gold = 0
 shield_used = False
 inventory = []
 
-def oformity1():
+def pause_long():
     print(" ")
     sleep(0.5)
 
-def oformity2():
+def pause_short():
     sleep(0.1)
 
 def check_dead(player_hp):
@@ -26,14 +27,14 @@ def check_dead(player_hp):
 def show_inventory(inventory):
     if not inventory:
         print("❗ Inventory is empty!")
-        oformity1()
+        pause_long()
     else:
         print("🎒 Your inventory:")
         ryad = ""
         for item in inventory:
             ryad = ryad + item + "; \n"
         print(ryad[0: -2: 1])
-        oformity1()
+        pause_long()
 
 def explore(inventory):
     def find_random_item():
@@ -66,20 +67,20 @@ def explore(inventory):
     random_item = find_random_item()
     if not random_item in inventory:
         print(f"✨ You explored the world and found {random_item}!")
-        oformity1()
+        pause_long()
         print(f"➕ Item ({random_item}) add to inventory!")
-        oformity1()
+        pause_long()
         inventory.append(random_item)
         return inventory
     elif random_item in inventory:
         print(f"✨ You explored the world and found {random_item}!")
-        oformity1()
+        pause_long()
         print(f"❗ Item ({random_item}) can't be add to inventory, you have it!")
-        oformity1()
+        pause_long()
         return inventory
     else:
         print(f"❗ Error!")
-        oformity1()
+        pause_long()
         return inventory
 
 def use_item(inventory, player_hp, player_gold):
@@ -165,11 +166,11 @@ def use_item(inventory, player_hp, player_gold):
             if enemy_hp <= 0:
                 random_gold = randint(10, 50)
                 print("💀 Enemy dead!")
-                oformity1()
+                pause_long()
                 print("🏆 You win!")
-                oformity1()
+                pause_long()
                 print(f"💰 Your reward is: {random_gold} gold!")
-                oformity1()
+                pause_long()
                 player_gold += random_gold
                 enemy_dead = True
                 return player_gold, enemy_dead
@@ -186,41 +187,41 @@ def use_item(inventory, player_hp, player_gold):
                 dead = check_dead(player_hp)
                 if dead == True:
                     print("💀 You died!")
-                    oformity1()
+                    pause_long()
                     exit_game(inventory, player_hp, player_gold)
                     break
                 player_damage = randint(5, 10)
                 print(f"⚔️  Your enemy: {enemy}!")
-                oformity1()
+                pause_long()
                 print(f"❤️  {enemy} HP: {enemy_hp}")
-                oformity2()
+                pause_short()
                 print(f"❤️  Your HP: {player_hp}")
-                oformity1()
+                pause_long()
                 print("1️⃣  1. Attack")
                 print("2️⃣  2. Run")
-                oformity1()
+                pause_long()
                 fight_choose = input("⌨️  Enter your choice: ").lower().strip()
-                oformity1()
+                pause_long()
                 if fight_choose.isdigit():
                     fight_choose = int(fight_choose)
                     if fight_choose == 1:
                         if shield_break == False:
                             print(f"⚔️  You attack {enemy}!")
-                            oformity1()
+                            pause_long()
                             print(f"⚔️  You hit {enemy}!")
-                            oformity2()
+                            pause_short()
                             print(f"💔  {enemy}: -{player_damage}HP!")
-                            oformity1()
+                            pause_long()
                             print(f"🛡️  {enemy} try to attack you, but shield defense you!")
-                            oformity2()
+                            pause_short()
                             print(f"🛡️  Shield broke!")
-                            oformity1()
+                            pause_long()
                             enemy_hp -= player_damage
                             shield_break = True
                             dead = check_dead(player_hp)
                             if dead == True:
                                 print("💀 You died!")
-                                oformity1()
+                                pause_long()
                                 exit_game(inventory, player_hp, player_gold)
                                 break
                             player_gold, enemy_dead = check_enemy_dead(enemy_hp, player_gold)
@@ -231,21 +232,21 @@ def use_item(inventory, player_hp, player_gold):
                                 continue
                         else:
                             print(f"⚔️  You attack {enemy}!")
-                            oformity1()
+                            pause_long()
                             print(f"⚔️  You hit {enemy}!")
-                            oformity2()
+                            pause_short()
                             print(f"💔  {enemy}: -{player_damage}HP!")
-                            oformity1()
+                            pause_long()
                             print(f"⚔️  Because of your shield broke {enemy} hit you!")
-                            oformity2()
+                            pause_short()
                             print(f"💔  You: -{enemy_damage}HP!")
-                            oformity1()
+                            pause_long()
                             player_hp -= enemy_damage
                             enemy_hp -= player_damage
                             dead = check_dead(player_hp)
                             if dead == True:
                                 print("💀 You died!")
-                                oformity1()
+                                pause_long()
                                 exit_game(inventory, player_hp, player_gold)
                                 break
                             player_gold, enemy_dead = check_enemy_dead(enemy_hp, player_gold)
@@ -257,89 +258,89 @@ def use_item(inventory, player_hp, player_gold):
                     elif fight_choose == 2:
                         if enemy == "Goblin" or enemy == "Goblin king":
                             print(f"🏃 You run from {enemy}...")
-                            oformity1()
+                            pause_long()
                             print(f"🏃 And you escaped successfully from {enemy}!")
-                            oformity1()
+                            pause_long()
                             dead = check_dead(player_hp)
                             break
                         elif enemy == "Dirt Golem" or enemy == "Skeletons army":
                             successfull_run = randint(0, 1)
                             print(f"🏃 You run from {enemy}...")
-                            oformity1()
+                            pause_long()
                             if successfull_run == 0:
                                 print(f"🫳 But {enemy} grab you and go back to fighting area!")
-                                oformity1()
+                                pause_long()
                                 dead = check_dead(player_hp)
                                 continue
                             else:
                                 print(f"🏃 And you escaped successfully from {enemy}!")
-                                oformity1()
+                                pause_long()
                                 dead = check_dead(player_hp)
                                 break
                         else:
                             print(f"🏃 You run from {enemy}...")
-                            oformity1()
+                            pause_long()
                             print(f"🏃 But {enemy} got angry and hit you!")
-                            oformity1()
+                            pause_long()
                             player_hp -= enemy_damage
                             dead = check_dead(player_hp)
                             if dead == True:
                                 print("💀 You died!")
-                                oformity1()
+                                pause_long()
                                 exit_game(inventory, player_hp, player_gold)
                                 break
                             continue
                     else:
                         print("❗ Not right number of choice!")
-                        oformity1()
+                        pause_long()
                         continue
                 elif fight_choose == "":
                     print("❗ Choice can't be empty!")
-                    oformity1()
+                    pause_long()
                     continue
                 else:
                     print("❗ Choice need to be numbers!")
-                    oformity1()
+                    pause_long()
                     continue
         elif shield_used == False:
             while True:
                 dead = check_dead(player_hp)
                 if dead == True:
                     print("💀 You died!")
-                    oformity1()
+                    pause_long()
                     exit_game(inventory, player_hp, player_gold)
                     break
                 player_damage = randint(5, 10)
                 print(f"⚔️  Your enemy: {enemy}!")
-                oformity1()
+                pause_long()
                 print(f"❤️  {enemy} HP: {enemy_hp}")
-                oformity2()
+                pause_short()
                 print(f"❤️  Your HP: {player_hp}")
-                oformity1()
+                pause_long()
                 print("1️⃣  1. Attack")
                 print("2️⃣  2. Run")
-                oformity1()
+                pause_long()
                 fight_choose = input("⌨️  Enter your choice: ").lower().strip()
-                oformity1()
+                pause_long()
                 if fight_choose.isdigit():
                     fight_choose = int(fight_choose)
                     if fight_choose == 1:
                         print(f"⚔️  You attack {enemy}!")
-                        oformity1()
+                        pause_long()
                         print(f"⚔️  You hit {enemy}!")
-                        oformity2()
+                        pause_short()
                         print(f"💔  {enemy}: -{player_damage}HP!")
-                        oformity1()
+                        pause_long()
                         print(f"⚔️  {enemy} hit you!")
-                        oformity2()
+                        pause_short()
                         print(f"💔  You: -{enemy_damage}HP!")
-                        oformity1()
+                        pause_long()
                         player_hp -= enemy_damage
                         enemy_hp -= player_damage
                         dead = check_dead(player_hp)
                         if dead == True:
                             print("💀 You died!")
-                            oformity1()
+                            pause_long()
                             exit_game(inventory, player_hp, player_gold)
                             break
                         player_gold, enemy_dead = check_enemy_dead(enemy_hp, player_gold)
@@ -351,49 +352,49 @@ def use_item(inventory, player_hp, player_gold):
                     elif fight_choose == 2:
                         if enemy == "Goblin" or enemy == "Goblin king":
                             print(f"🏃 You run from {enemy}...")
-                            oformity1()
+                            pause_long()
                             print(f"🏃 And you escaped successfully from {enemy}!")
-                            oformity1()
+                            pause_long()
                             dead = check_dead(player_hp)
                             break
                         elif enemy == "Dirt Golem" or enemy == "Skeletons army":
                             successfull_run = randint(0, 1)
                             print(f"🏃 You run from {enemy}...")
-                            oformity1()
+                            pause_long()
                             if successfull_run == 0:
                                 print(f"🫳 But {enemy} grab you and go back to fighting area!")
-                                oformity1()
+                                pause_long()
                                 dead = check_dead(player_hp)
                                 continue
                             else:
                                 print(f"🏃 And you escaped successfully from {enemy}!")
-                                oformity1()
+                                pause_long()
                                 dead = check_dead(player_hp)
                                 break
                         else:
                             print(f"🏃 You run from {enemy}...")
-                            oformity1()
+                            pause_long()
                             print(f"🏃 But {enemy} got angry and hit you!")
-                            oformity1()
+                            pause_long()
                             player_hp -= enemy_damage
                             dead = check_dead(player_hp)
                             if dead == True:
                                 print("💀 You died!")
-                                oformity1()
+                                pause_long()
                                 exit_game(inventory, player_hp, player_gold)
                                 break
                             continue
                     else:
                         print("❗ Not right number of choice!")
-                        oformity1()
+                        pause_long()
                         continue
                 elif fight_choose == "":
                     print("❗ Choice can't be empty!")
-                    oformity1()
+                    pause_long()
                     continue
                 else:
                     print("❗ Choice need to be numbers!")
-                    oformity1()
+                    pause_long()
                     continue
                 
         dead = check_dead(player_hp)
@@ -402,7 +403,7 @@ def use_item(inventory, player_hp, player_gold):
     
     if not inventory:
         print("❗ Inventory is empty, no items to use!")
-        oformity1()
+        pause_long()
         return inventory, player_hp, player_gold
     else:
         while True:
@@ -411,9 +412,9 @@ def use_item(inventory, player_hp, player_gold):
             for item in inventory:
                 ryad = ryad + item + "; "
             print(ryad[0: -2: 1])
-            oformity1()
+            pause_long()
             user_use = input("⌨️  Enter name of item to use: ").lower().strip()
-            oformity1()
+            pause_long()
             for item in inventory:
                 item_new = item.strip().lower()
                 if item_new == user_use:
@@ -424,57 +425,57 @@ def use_item(inventory, player_hp, player_gold):
                     continue
             if item_to_use == False:
                 print("❗ Not right name of item!")
-                oformity1()
+                pause_long()
             else:
                 using_item, buff = find_using_item(item_to_use)
                 if using_item == user_use and buff != None:
                     if using_item == "diamond" or using_item == "wood" or using_item == "gold coin":
                         player_gold += buff
                         print(f"💰 Item used! +{buff} gold!")
-                        oformity1()
+                        pause_long()
                         dead = check_dead(player_hp)
                     elif using_item != "diamond" and using_item != "wood" and using_item != "gold coin" and using_item != "iron sword" and using_item != "shield":
                         player_hp += buff
                         print(f"❤️  Item used! +{buff} HP!")
-                        oformity1()
+                        pause_long()
                         dead = check_dead(player_hp)
                     elif using_item == "iron sword":
                         print("⚔️  Item used! Going to fight!")
-                        oformity1()
+                        pause_long()
                         player_hp, player_gold, dead, shield_used = go_to_fight(player_hp, player_gold, shield_used)
-                        oformity1()
+                        pause_long()
                         return inventory, player_hp, player_gold, dead
                     elif using_item == "shield":
                         if shield_used == False:
                             print("🛡️  Item used! Shield for next fight!")
-                            oformity1()
+                            pause_long()
                             shield_used = True
                             dead = check_dead(player_hp)
                         elif shield_used:
                             print("❗ Shield alredy used!")
-                            oformity1()
+                            pause_long()
                             dead = check_dead(player_hp)
                             return inventory, player_hp, player_gold, dead
                     else:
                         print("❗ Error of buff!")
-                        oformity1()
+                        pause_long()
                         dead = check_dead(player_hp)
                     inventory.remove(item_to_use)
                     print("🎒 Item deleted from inventory!")
-                    oformity1()
+                    pause_long()
                     return inventory, player_hp, player_gold, dead
                 else:
                     print("❗ Item or buff is none!")
-                    oformity1()
+                    pause_long()
                     continue
                 
 def show_stats(inventory, player_hp, player_gold):
     print("📊 Your stats:")
-    oformity1()
+    pause_long()
     print(f"🎒 Items: {len(inventory)}")
     print(f"❤️  HP: {player_hp}")
     print(f"💰 Gold: {player_gold}")
-    oformity1()
+    pause_long()
 
 def exit_game(inventory, player_hp, player_gold):
     show_stats(inventory, player_hp, player_gold)
@@ -483,22 +484,22 @@ def exit_game(inventory, player_hp, player_gold):
 
 print("👋 Welcome to the RPG!")
 starter_time = time()
-oformity1()
+pause_long()
 while True:
     print("=== RPG ===")
-    oformity1()
+    pause_long()
     print("1️⃣  1. Show inventory")
-    oformity2()
+    pause_short()
     print("2️⃣  2. Explore")
-    oformity2()
+    pause_short()
     print("3️⃣  3. Use item")
-    oformity2()
+    pause_short()
     print("4️⃣  4. Show stats")
-    oformity2()
+    pause_short()
     print("5️⃣  5. Exit")
-    oformity1()
+    pause_long()
     user_choice = input("⌨️  Enter your choice: ").strip()
-    oformity1()
+    pause_long()
     if user_choice.isdigit():
         user_choice = int(user_choice)
         if user_choice == 1:
@@ -509,7 +510,7 @@ while True:
             inventory, player_hp, player_gold, dead = use_item(inventory, player_hp, player_gold)
             if dead == True:
                 print("💀 You died!")
-                oformity1()
+                pause_long()
                 exit_game(inventory, player_hp, player_gold)
                 break
         elif user_choice == 4:
@@ -519,17 +520,17 @@ while True:
             break
         else:
             print("❗ Not right number of choice!")
-            oformity1()
+            pause_long()
             continue
     elif user_choice == "":
         print("❗ Choice can't be empty!")
-        oformity1()
+        pause_long()
         continue
     elif user_choice.isalpha():
         print("❗ Choice need to be number!")
-        oformity1()
+        pause_long()
         continue
     else:
         print("❗ Choice need to be number!")
-        oformity1()
+        pause_long()
         continue

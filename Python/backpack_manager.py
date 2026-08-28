@@ -6,31 +6,31 @@ from time import sleep
 backpack = []
 finded_items = []
 
-def oformity1():
+def pause_long():
     print(" ")
     sleep(0.5)
 
-def oformity2():
+def pause_short():
     sleep(0.1)
 
 def view_backpack(backpack):
-    global oformity1, oformity2
+    global pause_long, pause_short
     if backpack == []:
         print("❗ Your backpack is empty!")
-        oformity1()
+        pause_long()
     else:
         print("🎒 Your backpack:")
-        oformity1()
+        pause_long()
         for item in backpack:
             print(item)
-            oformity2()
-        oformity1()
+            pause_short()
+        pause_long()
 
 def add_item(finded_items, backpack):
-    global oformity1, oformity2
+    global pause_long, pause_short
     if finded_items == []:
         print("❗ You don't have finded items!")
-        oformity1()
+        pause_long()
         return backpack, finded_items
     else:
         while True:
@@ -41,17 +41,17 @@ def add_item(finded_items, backpack):
             ryad = ryad[0: -2: 1]
             print(ryad)
             print(" ")
-            oformity1()
+            pause_long()
             user_choice = input("⌨️  Enter item name to add it into backpack: ").lower()
             user_choice = user_choice.strip()
-            oformity1()
+            pause_long()
             if user_choice.isdigit():
                 print("❗ Item name can't be number!")
-                oformity1()
+                pause_long()
                 continue
             elif user_choice == "":
                 print("❗ Item name can't be empty!")
-                oformity1()
+                pause_long()
                 continue
             else:
                 if user_choice in finded_items:
@@ -69,18 +69,18 @@ def add_item(finded_items, backpack):
                         print("➕ Item added to backpack!")
                         backpack.append(item.capitalize())
                         finded_items.remove(item_to_del)
-                    oformity1()
+                    pause_long()
                     return backpack, finded_items
                 else:
                     print("❗ Item not in finded items!")
-                    oformity1()
+                    pause_long()
                     continue
 
 def remove_item(backpack):
-    global oformity1, oformity2
+    global pause_long, pause_short
     if backpack == []:
         print("❗ You don't have items in backpack to remove it!")
-        oformity1()
+        pause_long()
         return backpack
     else:
         while True:
@@ -91,17 +91,17 @@ def remove_item(backpack):
             ryad = ryad[0: -2: 1]
             print(ryad)
             print(" ")
-            oformity1()
+            pause_long()
             user_choice = input("⌨️  Enter item name to remove it from backpack: ").lower()
             user_choice = user_choice.strip()
-            oformity1()
+            pause_long()
             if user_choice.isdigit():
                 print("❗ Item name can't be number!")
-                oformity1()
+                pause_long()
                 continue
             elif user_choice == "":
                 print("❗ Item name can't be empty!")
-                oformity1()
+                pause_long()
                 continue
             else:
                 for item in backpack: 
@@ -115,53 +115,53 @@ def remove_item(backpack):
                 if user_choice == item_c:
                     print("➖ Item removed from backpack!")
                     backpack.remove(item_to_del)
-                    oformity1()
+                    pause_long()
                     return backpack
                 else:
                     print("❗ Item not in backpack!")
-                    oformity1()
+                    pause_long()
                     continue
 
 def search_item(finded_items):
     while True:
         user_finding = input("⌨️  Enter what you want to find: ").lower()
         user_finding = user_finding.strip()
-        oformity1()
+        pause_long()
         if user_finding != "" and not user_finding.isdigit():
             if not user_finding in finded_items:
                 print(f"✨ You found {user_finding} and go. You can add it into your backpack now!")
-                oformity1()
+                pause_long()
                 finded_items.append(user_finding)
                 return finded_items
             else:
                 print(f"❗ Item - {user_finding} in finded items you can't add it!")
-                oformity1()
+                pause_long()
                 continue
         else:
             if user_finding == "":
                 print("❗ Item to find can't be empty!")
-                oformity1()
+                pause_long()
                 continue
             elif user_finding.isdigit():
                 print("❗ Item to find can't be number!")
-                oformity1()
+                pause_long()
                 continue
 
 print("=== Backpack Manager ===")
-oformity1()
+pause_long()
 while True:
     print("1️⃣  1. View backpack")
-    oformity2()
+    pause_short()
     print("2️⃣  2. Add item")
-    oformity2()
+    pause_short()
     print("3️⃣  3. Remove item")
-    oformity2()
+    pause_short()
     print("4️⃣  4. Search item")
-    oformity2()
+    pause_short()
     print("5️⃣  5. Exit")
-    oformity1()
+    pause_long()
     user_choice = input("⌨️  Enter your choice: ")
-    oformity1()
+    pause_long()
     if user_choice.isdigit():
         user_choice = int(user_choice)
         if user_choice == 1:
@@ -178,18 +178,18 @@ while True:
                 ryad = ryad + item + ", "
             ryad = ryad[0: -2: 1]
             print(f"🎒 Your backpack: {ryad}")
-            oformity1()
+            pause_long()
             print("👋 Thank you for using Backpack Manager! Goodbye!")
             break
         else:
             print("❗ Not right number of choice!")
-            oformity1()
+            pause_long()
             continue
     elif user_choice.strip() == "":
         print("❗ Choice can't be empty")
-        oformity1()
+        pause_long()
         continue
     else:
         print("❗ Choice need to be number!")
-        oformity1()
+        pause_long()
         continue

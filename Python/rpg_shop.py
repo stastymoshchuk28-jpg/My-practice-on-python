@@ -16,54 +16,54 @@ shop = {
     "Magic book": {"Cost": 200, "Stock": 2}
 }
 
-def oformity1():
+def pause_long():
     print(" ")
     sleep(0.5)
 
-def oformity2():
+def pause_short():
     sleep(0.1)
 
 def menu():
     print("=== RPG shop ===")
-    oformity1()
+    pause_long()
     print("1️⃣  1. Show shop")
-    oformity2()
+    pause_short()
     print("2️⃣  2. Buy item")
-    oformity2()
+    pause_short()
     print("3️⃣  3. Show your inventory")
-    oformity2()
+    pause_short()
     print("4️⃣  4. Show your money")
-    oformity2()
+    pause_short()
     print("5️⃣  5. Exit")
-    oformity1()
+    pause_long()
 
 def show_shop(shop):
     print("🛒 Shop: ")
-    oformity1()
+    pause_long()
     for num_of_item, (item, item_info) in enumerate(shop.items(), start=1):
         cost_of_item = item_info["Cost"]
         stock_of_item = item_info["Stock"]
 
         print(f"{num_of_item}. {item}")
-        oformity2()
+        pause_short()
         print(f"💰 Cost: {cost_of_item}")
-        oformity2()
+        pause_short()
         print(f"📊 Stock: {stock_of_item}")
-        oformity1()
+        pause_long()
 
 def buy_item(shop, player):
     player_inventory = player["Inventory"]
     while True:
         show_shop(shop)
         user_choice = input("⌨️  Enter item name to buy it: ").strip().capitalize()
-        oformity1()
+        pause_long()
         if user_choice.isdigit():
             print("❗ Item name can't be only numbers")
-            oformity1()
+            pause_long()
             continue
         elif user_choice == "":
             print("❗ Item name can't be empty!")
-            oformity1()
+            pause_long()
             continue
         else:
             item_found = False
@@ -77,11 +77,11 @@ def buy_item(shop, player):
                 if shop[item_to_buy]["Stock"] > 0:
                     if player["Money"] < item_cost:
                         print(f"❗ You don't have money to buy {item_to_buy}")
-                        oformity1()
+                        pause_long()
                         return shop, player
                     else:
                         print(f"✅ {item_to_buy} bought!")
-                        oformity1()
+                        pause_long()
                         shop[item_to_buy]["Stock"] -= 1
                         player["Money"] -= item_cost
                         need_to_add_item = True
@@ -100,18 +100,18 @@ def buy_item(shop, player):
                             return shop, player
                 else:
                     print(f"❗ No left {item_to_buy} in shop!")
-                    oformity1()
+                    pause_long()
                     return shop, player
             else:
                 print("❗ Item not in shop!")
-                oformity1()
+                pause_long()
                 continue
 
 def show_inventory(player):
     player_inventory = player["Inventory"]
     if not player_inventory:
         print("❗ Your inventory empty!")
-        oformity1()
+        pause_long()
     else:
         text = ""
         for item in player_inventory:
@@ -121,13 +121,13 @@ def show_inventory(player):
             text = text + f"• {item_name}: {items}\n"
         text = text[0: -1: 1]
         print("🎒 Your inventory: ")
-        oformity1()
+        pause_long()
         print(text)
-        oformity1()
+        pause_long()
 
 def show_money(player):
     print(f"💰 Your money: {player['Money']}")
-    oformity1()
+    pause_long()
 
 while True:
     menu()
@@ -149,13 +149,13 @@ while True:
             break
         else:
             print("❗ Not right number of choice!")
-            oformity1()
+            pause_long()
             continue
     elif user_choice == "":
         print("❗ Choice can't be empty!")
-        oformity1()
+        pause_long()
         continue
     else:
         print("❗ Choice need to be a number")
-        oformity1()
+        pause_long()
         continue

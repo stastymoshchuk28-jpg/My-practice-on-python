@@ -10,61 +10,61 @@ account = {
 have_account = False
 log_in_to_account = False
 
-def oformity1():
+def pause_long():
     print(" ")
     sleep(0.5)
 
-def oformity2():
+def pause_short():
     sleep(0.1)
 
 def menu():
     print("=== Registration System ===")
-    oformity1()
+    pause_long()
     print("1️⃣  Create account")
-    oformity2()
+    pause_short()
     print("2️⃣  Log in to account")
-    oformity2()
+    pause_short()
     print("3️⃣  Log out from account")
-    oformity2()
+    pause_short()
     print("4️⃣  Exit")
-    oformity1()
+    pause_long()
 
 def registration_account(account:dict, have_account:bool):
     while True:
         if not have_account:
             user_name = input("⌨️  Enter username for account: ").strip()
-            oformity1()
+            pause_long()
             if user_name == "":
                 print("❗ Username can't be empty!")
-                oformity1()
+                pause_long()
                 continue
             elif user_name.isdigit():
                 print("❗ Username can't be just numbers!")
-                oformity1()
+                pause_long()
                 continue
             else:
                 print("✅ Username saved!")
-                oformity1()
+                pause_long()
             password = input("⌨️  Enter password for account: ").strip()
             if password == "":
                 print("❗ Password can't be empty!")
-                oformity1()
+                pause_long()
                 continue
             elif password.isdigit():
                 print("❗ Password can't be just numbers!")
-                oformity1()
+                pause_long()
                 continue
             else:
                 print("✅ Password saved!")
-                oformity1()
+                pause_long()
             account.update(Username=user_name, Password=password)
             have_account = True
             print("✅ Account created!")
-            oformity1()
+            pause_long()
             return account, have_account
         else:
             print("❗ You already have account!")
-            oformity1()
+            pause_long()
             return account, have_account
         
 def log_in(account:dict, log_in_to_account:bool):
@@ -72,77 +72,77 @@ def log_in(account:dict, log_in_to_account:bool):
         if account["Username"] != None and account["Password"] != None:
             if log_in_to_account == False:
                 print("⚙️ Log in to account:")
-                oformity1()
+                pause_long()
                 user_name_to_log_in = input("⌨️  Enter username of account to log in: ").strip()
-                oformity1()
+                pause_long()
                 if user_name_to_log_in == account["Username"]:
                     print("✅ Right username!")
-                    oformity1()
+                    pause_long()
                 else:
                     print("❌ Username is not right!")
-                    oformity1()
+                    pause_long()
                     continue
                 password_to_log_in = input("⌨️  Enter password of account to log in: ").strip()
-                oformity1()
+                pause_long()
                 if password_to_log_in == account["Password"]:
                     print("✅ Right password!")
-                    oformity1()
+                    pause_long()
                 else:
                     print("❌ Password is not right!")
-                    oformity1()
+                    pause_long()
                     continue  
                 print(f"✅ You log in to account {account["Username"]}!")                 
                 log_in_to_account = True
                 return log_in_to_account
             else:
                 print("❗ You already log in to account!")
-                oformity1()
+                pause_long()
                 return log_in_to_account
         else:
             print("❗ You don't create account to log in!")
-            oformity1()
+            pause_long()
             return log_in_to_account
 
 def log_out(account:dict, log_in_to_account:bool):
     while True:
         if not log_in_to_account:
             print("❗ You need firstly log in to account before log out!")
-            oformity1()
+            pause_long()
             return log_in_to_account
         else:
             sure_to_log_out = input("⌨️  Are you sure to log out? (Enter yes/no)").strip()
-            oformity1()
+            pause_long()
             if sure_to_log_out == "yes":
                 print("⚙️ Log out started!")
-                oformity1()
+                pause_long()
                 log_in_to_account = False
                 print("❗ You are log out from account!")
-                oformity1()
+                pause_long()
                 return log_in_to_account
             elif sure_to_log_out == "no":
                 print("❗ Exit log out!")
-                oformity1()
+                pause_long()
                 return log_in_to_account
             else:
                 print("❗ Enter yes or no!")
-                oformity1()
+                pause_long()
                 continue
 
 def exit_program(account):
     print("🪪 Your account:")
-    oformity1()
+    pause_long()
     for key, value in account.items():
         print(f"• {key}: {value}")
-        oformity2()
-    oformity1()
+        pause_short()
+    pause_long()
     print("👋 Goodbye!")
-    oformity1()
+    pause_long()
 
 while True:
     menu()
     try:
         user_choice = int(input("⌨️  Enter your choice:"))
-        oformity1()
+        pause_long()
         if user_choice == 1:
             account, have_account = registration_account(account, have_account)
         elif user_choice == 2:
@@ -154,11 +154,11 @@ while True:
             break
         else:
             print("❗ Enter right number!")
-            oformity1()
+            pause_long()
             continue
     except ValueError:
-        oformity1()
+        pause_long()
         print("❗ Enter number!")
-        oformity1()
+        pause_long()
         continue 
     

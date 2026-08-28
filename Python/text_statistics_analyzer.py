@@ -1,4 +1,6 @@
-#Done
+#done!
+#v1.0
+
 import time
 
 def analyze_text(text):
