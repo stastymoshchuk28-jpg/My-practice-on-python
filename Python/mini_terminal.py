@@ -366,6 +366,11 @@ errors = {
             "description": "OS-TERMINAL: ==the_doesn't_have_user_error== -- '{} -- USAGE IS BLOCKED -- OS-.CORE_FOLDER.-TERMINAL.XXX-.NO_USER_ERROR==CRITICAL==e.r.r!'\n -- OS-TERMINAL-NO_USER critical error!\nError code: OS-.CORE_FOLDER.-TERMINAL.XXX-.NO_USER_ERROR==CRITICAL==e.r.r",
             "restart": "Restarting Myrchik OS..."
         },
+        "empty_command": {
+            "type_of_error": "ERROR OF OS-TERMINAL-COMMAND_IS_EMPTY:",
+            "description": "OS-TERMINAL: COMMAND_IS_EMPTY -- 'command is empty!'\n -- OS-TERMINAL-COMMAND_IS_EMPTY error!\nError code: OS-.CORE_FOLDER.-TERMINAL.XXX-.COMMAND_IS_EMPTYerr.-OS_ERROR",
+            "restart": "Restarting terminal..."
+        }
 }
 
 history = []
@@ -375,6 +380,11 @@ user_info, start_time = start_work(user_info, errors)
 while True:
     command = input("Enter name of command ('help' to see commands list): ").strip().lower()
     pause_long()
+
+    if not command:
+        show_error(errors, "empty_command")
+        continue
+
     if user_info["user_name"] is None:
         if command == "stop":
             command_to_enter = commands["standart_user_commands"][command]
@@ -395,11 +405,11 @@ while True:
             command_to_enter()
             history.append(command)
         else:
-            if not command in commands["standart_user_commands"] and not command in commands["super_user_commands"]:
+            if not command_base in commands["standart_user_commands"] and not command_base in commands["super_user_commands"]:
                 show_error(errors, "command_not_found", command)
                 history.append(f"Error command: {command}")
                 continue
-            elif command in commands["super_user_commands"] and not user_info["super_user"]:
+            elif command_base in commands["super_user_commands"] and not user_info["super_user"]:
                 show_error(errors, "command_blocked", command)
                 history.append(f"Error command: {command}")
                 continue
