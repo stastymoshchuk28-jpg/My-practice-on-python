@@ -388,9 +388,11 @@ while True:
     if user_info["user_name"] is None:
         if command == "stop":
             command_to_enter = commands["standart_user_commands"][command]
+            history.append({command})
             command_to_enter()      
         else:
             show_error(errors, "no_user_error", command)
+            history.append(f"Error command: {command}")
             user_info, start_time = start_work(user_info, errors)
             continue   
     else:
