@@ -19,7 +19,7 @@ Here you'll find:
 
 ## 🛠️ Tech
 - Python 3 (standard library only — no external packages needed)
-- Modules used across projects: `random`, `time`
+- Modules used across projects: `random`, `time`, `turtle`
 
 ## 🗂️ Some projects inside
 - **Magic Adventures (RPG GAME).py** — text-based RPG with classes, skills, and leveling
