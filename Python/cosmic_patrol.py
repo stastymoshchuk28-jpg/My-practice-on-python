@@ -1,4 +1,4 @@
-#Texts on ukrainian lenguage
+#Texts on ukrainian language
 from turtle import *
 from random import randint, choice
 screen = getscreen()
@@ -51,7 +51,7 @@ class Projectile(SpaceObject):
             self.destroy()
         return None
 
-class Weapon():
+class Weapon:
     def __init__(self, field_info, ammo=None, reloading_speed=2000, move_speed_y=2, weapon_damage=1, weapon_shape="square", weapon_color="red", size_wid=1, size_len=1, active=True):
         self.projectile_data = {"Shape": weapon_shape, "Color": weapon_color, "Damage": weapon_damage, "Size_wid": size_wid, "Size_len": size_len, "active": active}
         self.ammo = ammo
@@ -257,7 +257,7 @@ class ScoreBonus(Bonus):
 
 class Game:
     def __init__(self, field_info, for_game_UI):
-        print("=== КОСМІЧНИЙ ПАТРУЛЬ ===\nЗахисти станцію від астероїдів і ворожих кораблів!\nКерування: ← → рух, ПРОБІЛ постріл, клік по кнопці змінює зброю.\n")
+        print("=== КОСМІЧНИЙ ПАТРУЛЬ ===\nЗахисти станцію від астероїдів і ворожих кораблів!\nСпочатку клікни по полотну і потім керуй! 1Керування: ← → рух, ПРОБІЛ постріл, клік по кнопці змінює зброю.\n")
         self.__game_data = {
             "game_going": True,
             "score": 0,
@@ -414,6 +414,7 @@ class Game:
                 self.__GameUI.write("Ти врятував станцію!", font=("Arial", 15))
                 self.__game_data["player"].destroy()
                 self.__game_data["game_going"] = False
+        if self.__game_data["game_going"]:
             print(f"\rЩит: {self.__game_data['player'].shield.health} | Очки: {self.__game_data['score']} | Зброя: {self.__game_data['player'].weapon_equiped}", end="", flush=True)
             if self.__game_data["asteroid_spawn_timer"] >= self.__game_data["asteroid_spawn_interval"]:
                 self.new_asteroid()
